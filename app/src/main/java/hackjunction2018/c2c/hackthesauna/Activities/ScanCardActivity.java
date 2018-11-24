@@ -81,7 +81,7 @@ public class ScanCardActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        overridePendingTransition(R.anim.slide_out, R.anim.slide_in);
+        overridePendingTransition(R.anim.slide_in_exit, R.anim.slide_out_exit);
     }
 
     public void cardIsValid(){
