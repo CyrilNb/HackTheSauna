@@ -31,9 +31,11 @@ public class ContentManager {
     private Context mContext;
     private ContentManager.DataListener mDataListener;
     private int averageTemperature;
-    SimpleSensor lowestTemperatureSensor;
-    SimpleSensor highestTemperatureSensor;
+    private SimpleSensor lowestTemperatureSensor;
+    private SimpleSensor highestTemperatureSensor;
     private int averageHumidity;
+    private RequestQueue mRequestQueue;
+
 
     private List<SimpleSensor> mSimpleSensorList;
 
@@ -56,6 +58,7 @@ public class ContentManager {
     private ContentManager(Context context, DataListener dataListener) {
         this.mContext = context;
         this.mDataListener = dataListener;
+        this.mRequestQueue = Volley.newRequestQueue(this.mContext);
         this.mSimpleSensorList = new ArrayList<>();
     }
 
@@ -74,7 +77,6 @@ public class ContentManager {
     }
 
     private void fetchBench1() {
-        RequestQueue queue = Volley.newRequestQueue(mContext);
         String url = "https://apigtw.vaisala.com/hackjunction2018/saunameasurements/latest?SensorID=Bench1&limit=1";
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
@@ -111,11 +113,10 @@ public class ContentManager {
             }
         });
 
-        queue.add(jsonArrayRequest);
+        this.mRequestQueue.add(jsonArrayRequest);
     }
 
     private void fetchBench2() {
-        RequestQueue queue = Volley.newRequestQueue(mContext);
         String url = "https://apigtw.vaisala.com/hackjunction2018/saunameasurements/latest?SensorID=Bench2&limit=1";
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
@@ -155,11 +156,10 @@ public class ContentManager {
         });
 
 
-        queue.add(jsonArrayRequest);
+        mRequestQueue.add(jsonArrayRequest);
     }
 
     private void fetchBench3() {
-        RequestQueue queue = Volley.newRequestQueue(mContext);
         String url = "https://apigtw.vaisala.com/hackjunction2018/saunameasurements/latest?SensorID=Bench3&limit=1";
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
@@ -196,11 +196,10 @@ public class ContentManager {
             }
         });
 
-        queue.add(jsonArrayRequest);
+        mRequestQueue.add(jsonArrayRequest);
     }
 
     private void fetchStove1() {
-        RequestQueue queue = Volley.newRequestQueue(mContext);
         String url = "https://apigtw.vaisala.com/hackjunction2018/saunameasurements/latest?SensorID=Stove1&limit=1";
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
@@ -238,11 +237,10 @@ public class ContentManager {
             }
         });
 
-        queue.add(jsonArrayRequest);
+        mRequestQueue.add(jsonArrayRequest);
     }
 
     private void fetchStove2() {
-        RequestQueue queue = Volley.newRequestQueue(mContext);
         String url = "https://apigtw.vaisala.com/hackjunction2018/saunameasurements/latest?SensorID=Stove2&limit=1";
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
@@ -279,11 +277,10 @@ public class ContentManager {
             }
         });
 
-        queue.add(jsonArrayRequest);
+        mRequestQueue.add(jsonArrayRequest);
     }
 
     private void fetchCeiling1() {
-        RequestQueue queue = Volley.newRequestQueue(mContext);
         String url = "https://apigtw.vaisala.com/hackjunction2018/saunameasurements/latest?SensorID=Ceiling1&limit=1";
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
@@ -320,11 +317,10 @@ public class ContentManager {
             }
         });
 
-        queue.add(jsonArrayRequest);
+        mRequestQueue.add(jsonArrayRequest);
     }
 
     private void fetchCeiling2() {
-        RequestQueue queue = Volley.newRequestQueue(mContext);
         String url = "https://apigtw.vaisala.com/hackjunction2018/saunameasurements/latest?SensorID=Ceiling2&limit=1";
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
@@ -362,11 +358,10 @@ public class ContentManager {
             }
         });
 
-        queue.add(jsonArrayRequest);
+        mRequestQueue.add(jsonArrayRequest);
     }
 
     private void fetchFloor1() {
-        RequestQueue queue = Volley.newRequestQueue(mContext);
         String url = "https://apigtw.vaisala.com/hackjunction2018/saunameasurements/latest?SensorID=Floor1&limit=1";
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
@@ -406,11 +401,10 @@ public class ContentManager {
             }
         });
 
-        queue.add(jsonArrayRequest);
+        mRequestQueue.add(jsonArrayRequest);
     }
 
     private void fetchDoorway1() {
-        RequestQueue queue = Volley.newRequestQueue(mContext);
         String url = "https://apigtw.vaisala.com/hackjunction2018/saunameasurements/latest?SensorID=Doorway1&limit=1";
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
@@ -449,7 +443,7 @@ public class ContentManager {
             }
         });
 
-        queue.add(jsonArrayRequest);
+        mRequestQueue.add(jsonArrayRequest);
     }
 
 

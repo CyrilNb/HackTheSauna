@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:screenOrientation="landscape">
+        android:screenOrientation="landscape"
+        android:largeHeap="true">
         <activity
             android:name=".Activities.FullscreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

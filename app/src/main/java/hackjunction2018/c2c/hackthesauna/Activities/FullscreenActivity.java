@@ -162,33 +162,9 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
         snackbar.show();
     }
 
-<<<<<<< HEAD
     @Override
     public void onBackPressed() {
         overridePendingTransition(R.anim.slide_out, R.anim.slide_in);
     }
-=======
-    /*private void longPollingUpdate() {
-        mHandler = new Handler();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    try {
-                        Thread.sleep(3000);
-                        mHandler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                contentManager.fetchAllData();
-                                System.out.println("UPDATED");
-                                System.out.println(contentManager.getHighestTemperatureSensor().getmTimeStamp());
-                            }
-                        });
-                    } catch (Exception e) {
-                    }
-                }
-            }
-        }).start();
-    }*/
->>>>>>> 4ef6114499cace5209b5b5da7f351ec31d7d4dde
+
 }

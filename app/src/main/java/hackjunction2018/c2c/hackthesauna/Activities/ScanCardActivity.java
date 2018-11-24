@@ -32,6 +32,7 @@ public class ScanCardActivity extends AppCompatActivity {
             type = b.getString("type");
 
         layout = findViewById(R.id.scanCardLayout);
+        mBackButton = findViewById(R.id.back_button);
 
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
