@@ -2,6 +2,7 @@ package hackjunction2018.c2c.hackthesauna.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -11,6 +12,7 @@ public class ScanCardActivity extends AppCompatActivity {
 
     private String type;
     private View layout;
+    private FloatingActionButton mBackButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,15 @@ public class ScanCardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 cardIsValid();
+            }
+        });
+
+        mBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                overridePendingTransition(R.anim.slide_out, R.anim.slide_in);
+                Intent backIntent = new Intent(getApplicationContext(), FullscreenActivity.class);
+                startActivity(backIntent);
             }
         });
 
