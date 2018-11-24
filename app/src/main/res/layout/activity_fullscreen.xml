@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorGrey1"
+    android:background="@color/colorPrimaryDark"
     tools:context=".Activities.FullscreenActivity"
     android:orientation="vertical"
     android:weightSum="5"
@@ -16,8 +16,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="2"
-        android:background="@color/colorGrey1"
+        android:background="@color/colorPrimaryDark"
         android:orientation="horizontal"
+        android:layout_margin="10dp"
         android:weightSum="3">
 
         <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -162,6 +163,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="3"
         android:orientation="horizontal"
+        android:layout_margin="10dp"
         android:weightSum="4">
 
         <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -187,21 +189,34 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/colorPrimary"
-                    android:text="Lowest temp"
+                    android:padding="5dp"
+                    android:text="Lowest temperature"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="50sp" />
+                    android:textSize="40sp" />
 
                 <TextView
                     android:id="@+id/low_temp_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="-"
                     android:textAlignment="center"
                     android:textColor="@color/colorPrimary"
                     android:textSize="35sp" />
 
             </LinearLayout>
         </android.support.v7.widget.CardView>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabMap"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_eye_white_18dp"
+            android:tint="@color/colorPrimaryDark"
+            app:backgroundTint="@color/colorAccent" />
 
         <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:id="@+id/card_view_low_temp"
@@ -226,15 +241,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/colorPrimary"
-                    android:text="Highest temp"
+                    android:padding="5dp"
+                    android:text="Highest temperature"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="50sp" />
+                    android:textSize="40sp" />
 
                 <TextView
                     android:id="@+id/high_temp_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="-"
                     android:textAlignment="center"
                     android:textColor="@color/colorPrimary"
                     android:textSize="35sp" />
