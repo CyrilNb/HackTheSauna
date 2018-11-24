@@ -24,6 +24,10 @@
         <activity
             android:name=".ScanCardActivity"
             android:label="@string/title_activity_scan_card"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".PersonalActivity"
+            android:label="@string/title_activity_personal"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
