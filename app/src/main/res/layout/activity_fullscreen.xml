@@ -8,7 +8,8 @@
     android:background="@color/colorGrey1"
     tools:context=".Activities.FullscreenActivity"
     android:orientation="vertical"
-    android:weightSum="5">
+    android:weightSum="5"
+    android:clickable="true">
 
     <LinearLayout
         android:id="@+id/first_line_container"
