@@ -12,6 +12,10 @@ import android.widget.Button;
 
 import com.codetroopers.betterpickers.hmspicker.HmsPickerBuilder;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import hackjunction2018.c2c.hackthesauna.Model.Session;
 import hackjunction2018.c2c.hackthesauna.R;
 import hackjunction2018.c2c.hackthesauna.SessionAdapter;
 
@@ -57,8 +61,16 @@ public class PersonalActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        String[] data = new String[1];
-        mAdapter = new SessionAdapter(data);
+        List<Session> lastSessions = new ArrayList<>();
+
+        for(int i=0; i < 10; i++){
+            int randomTemp = (int )(Math.random() * 100 + 1);
+            int randomMin = (int )(Math.random() * 59 + 1);
+            int randomCalories = (int )(Math.random() * 300 + 1);
+            lastSessions.add(new Session(i+1 + " November 2018", String.valueOf(randomTemp), String.valueOf(randomMin), String.valueOf(randomCalories)));
+        }
+
+        mAdapter = new SessionAdapter(lastSessions);
         mRecyclerView.setAdapter(mAdapter);
 
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);

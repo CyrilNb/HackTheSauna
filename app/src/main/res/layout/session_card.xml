@@ -42,6 +42,7 @@
                     android:tint="@color/colorPrimary" />
 
                 <TextView
+                    android:id="@+id/dateSession"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -77,6 +78,7 @@
                     android:src="@drawable/ic_thermometer_white_48dp" />
 
                 <TextView
+                    android:id="@+id/tempSession"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -107,6 +109,7 @@
                     android:src="@drawable/baseline_av_timer_white_48" />
 
                 <TextView
+                    android:id="@+id/durationSession"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -136,6 +139,7 @@
                     android:src="@drawable/ic_fire_white_48dp" />
 
                 <TextView
+                    android:id="@+id/caloriesSession"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
