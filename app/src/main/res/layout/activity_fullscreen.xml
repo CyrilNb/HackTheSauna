@@ -41,9 +41,10 @@
 
                 <in.unicodelabs.kdgaugeview.KdGaugeView
                     android:id="@+id/speedMeter"
-                    android:layout_width="253dp"
-                    android:layout_height="243dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_margin="10dp"
                     app:dialSpeedAlertColor="@color/colorRed1"
                     app:dialSpeedColor="@color/colorGreen1"
                     app:maxSpeed="220"
@@ -52,15 +53,6 @@
                     app:speed_limit="220"
                     app:unitOfMeasurement="°C"
                     app:unitOfMeasurementTextSize="40dp" />
-
-                <TextView
-                    android:id="@+id/temperature_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="46°C"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="70sp" />
 
             </LinearLayout>
 
@@ -134,12 +126,14 @@
                     android:id="@+id/moisture_image"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
+                    android:layout_marginBottom="20dp"
                     android:src="@drawable/drop" />
 
                 <TextView
                     android:id="@+id/moisture_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:text="15,7%"
                     android:textAlignment="center"
                     android:textColor="@color/colorPrimary"
@@ -152,33 +146,34 @@
 
     </LinearLayout>
 
-    <android.support.v7.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view_second_container"
-        android:layout_gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        card_view:cardCornerRadius="4dp"
-        android:layout_weight="2"
-        android:layout_margin="15dp"
-        card_view:cardPreventCornerOverlap="false"
-        android:background="@color/white">
+
 
         <LinearLayout
             android:id="@+id/second_line_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="5"
-            >
+            android:layout_weight="2"
+            android:weightSum="4">
 
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view_high_temp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:layout_weight="2"
+                android:background="@color/white"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardPreventCornerOverlap="false">
             <LinearLayout
                 android:id="@+id/low_temp_desc"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -199,14 +194,26 @@
                     android:textSize="35sp" />
 
             </LinearLayout>
+            </android.support.v7.widget.CardView>
 
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view_low_temp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:layout_weight="2"
+                android:background="@color/white"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardPreventCornerOverlap="false">
             <LinearLayout
                 android:id="@+id/high_temp_desc"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -227,32 +234,42 @@
                     android:textSize="35sp" />
 
             </LinearLayout>
+            </android.support.v7.widget.CardView>
 
-            <LinearLayout
-                android:id="@+id/show_sauna"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+            <!--
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:background="@color/white"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardPreventCornerOverlap="false">
 
-                <ImageButton
-                    android:layout_width="200dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="10dp"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginTop="20dp"
-                    android:adjustViewBounds="true"
-                    android:background="@color/colorPrimary"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/eye" />
+                <LinearLayout
+                    android:id="@+id/show_sauna"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-            </LinearLayout>
+                    <ImageButton
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:adjustViewBounds="true"
+                        android:background="@color/colorPrimary"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/eye" />
 
+                </LinearLayout>
+            </android.support.v7.widget.CardView>-->
         </LinearLayout>
 
 
-    </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
