@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="hackjunction2018.c2c.hackthesauna.PersonalActivity"
+    tools:context="hackjunction2018.c2c.hackthesauna.Activities.PersonalActivity"
     tools:showIn="@layout/activity_personal">
 
     <LinearLayout
@@ -26,20 +26,33 @@
             card_view:cardPreventCornerOverlap="false"
             android:background="@color/white">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Set a timer"
-                android:textAlignment="center"
-                android:textSize="60sp"
-                android:textColor="@color/white"
-                android:background="@color/colorPrimary"/>
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/button_select_timer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Select a duration"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Set a timer"
+                    android:textAlignment="center"
+                    android:textSize="60sp"
+                    android:textColor="@color/white"
+                    android:background="@color/colorPrimary"/>
+
+                <Button
+                    android:id="@+id/button_select_timer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:background="@color/colorPrimary"
+                    android:textColor="@color/white"
+                    android:textSize="40dp"
+                    android:text="Select a duration"/>
+
+            </LinearLayout>
+
+
 
         </android.support.v7.widget.CardView>
 

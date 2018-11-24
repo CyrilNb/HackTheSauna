@@ -1,4 +1,4 @@
-package hackjunction2018.c2c.hackthesauna;
+package hackjunction2018.c2c.hackthesauna.Activities;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.codetroopers.betterpickers.hmspicker.HmsPickerBuilder;
+
+import hackjunction2018.c2c.hackthesauna.R;
 
 public class PersonalActivity extends AppCompatActivity {
 

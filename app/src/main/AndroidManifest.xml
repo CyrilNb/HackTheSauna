@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="hackjunction2018.c2c.hackthesauna">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".FullscreenActivity"
+            android:name=".Activities.FullscreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="landscape"
@@ -22,15 +24,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ScanCardActivity"
+            android:name=".Activities.ScanCardActivity"
             android:label="@string/title_activity_scan_card"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".PersonalActivity"
+            android:name=".Activities.PersonalActivity"
             android:label="@string/title_activity_personal"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".RecapActivity"
+            android:name=".Activities.RecapActivity"
             android:label="@string/title_activity_recap"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

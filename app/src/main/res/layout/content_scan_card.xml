@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="hackjunction2018.c2c.hackthesauna.ScanCardActivity"
+    tools:context="hackjunction2018.c2c.hackthesauna.Activities.ScanCardActivity"
     tools:showIn="@layout/activity_scan_card">
 
     <LinearLayout
