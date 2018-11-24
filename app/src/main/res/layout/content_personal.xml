@@ -8,4 +8,66 @@
     tools:context="hackjunction2018.c2c.hackthesauna.PersonalActivity"
     tools:showIn="@layout/activity_personal">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view_timer"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            card_view:cardCornerRadius="4dp"
+            android:layout_weight="1"
+            android:layout_margin="15dp"
+            card_view:cardPreventCornerOverlap="false"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Set a timer"
+                android:textAlignment="center"
+                android:textSize="60sp"
+                android:textColor="@color/white"
+                android:background="@color/colorPrimary"/>
+
+            <Button
+                android:id="@+id/button_select_timer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select a duration"/>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view_sessions"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            card_view:cardCornerRadius="4dp"
+            android:layout_weight="1"
+            android:layout_margin="15dp"
+            card_view:cardPreventCornerOverlap="false"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="My last sessions"
+                android:textAlignment="center"
+                android:textSize="60sp"
+                android:textColor="@color/white"
+                android:background="@color/colorPrimary"/>
+
+
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
