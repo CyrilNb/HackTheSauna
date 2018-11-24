@@ -6,7 +6,7 @@
     android:background="@color/colorPrimary"
     tools:context=".FullscreenActivity"
     android:orientation="vertical"
-    android:weightSum="4">
+    android:weightSum="5">
 
     <LinearLayout
         android:id="@+id/first_line_container"
@@ -97,6 +97,123 @@
 
         </LinearLayout>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/second_line_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimaryDark"
+        android:weightSum="5"
+        android:layout_weight="2">
+
+        <LinearLayout
+            android:id="@+id/low_temp_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Low temp"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:textSize="50sp"/>
+
+            <TextView
+                android:id="@+id/low_temp_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bench 1 - 26°C"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:textSize="35sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/high_temp_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="High temp"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:textSize="50sp"/>
+
+            <TextView
+                android:id="@+id/high_temp_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bench 2 - 66°C"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:textSize="35sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/show_sauna"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/third_line_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimaryDark"
+        android:weightSum="3"
+        android:layout_weight="2">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
     </LinearLayout>
 
 </LinearLayout>
