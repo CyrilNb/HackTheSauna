@@ -14,6 +14,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import hackjunction2018.c2c.hackthesauna.Model.SimpleSensor;
 import hackjunction2018.c2c.hackthesauna.Model.HumiditySensor;
 
@@ -24,11 +27,17 @@ public class ContentManager {
     private static final String TAG = ContentManager.class.getSimpleName();
     private static ContentManager mInstance;
     private SimpleSensor mBench1, mBench3, mStove1, mStove2;
-    private HumiditySensor mBench2, mCeiling1, mCeiling2, mFloor1, mDoorway1, mOutdoor1;
+    private HumiditySensor mBench2, mCeiling1, mCeiling2, mFloor1, mDoorway1;
     private Context mContext;
-    ContentManager.DataListener mDataListener;
+    private ContentManager.DataListener mDataListener;
+    private int averageTemperature;
+    SimpleSensor lowestTemperatureSensor;
+    SimpleSensor highestTemperatureSensor;
+    private int averageHumidity;
 
-    private int numberOfRequestsToMake = 10;
+    private List<SimpleSensor> mSimpleSensorList;
+
+    private int numberOfRequestsToMake;
     private boolean hasRequestFailed = false;
 
     public interface DataListener {
@@ -47,10 +56,12 @@ public class ContentManager {
     private ContentManager(Context context, DataListener dataListener) {
         this.mContext = context;
         this.mDataListener = dataListener;
-        this.fetchAllData();
+        this.mSimpleSensorList = new ArrayList<>();
     }
 
-    private void fetchAllData() {
+    public void fetchAllData() {
+        this.getmSimpleSensorList().clear();
+        this.numberOfRequestsToMake = 9;
         fetchBench1();
         fetchBench2();
         fetchBench3();
@@ -59,7 +70,6 @@ public class ContentManager {
         fetchStove1();
         fetchStove2();
         fetchDoorway1();
-        fetchOutdoor1();
         fetchFloor1();
     }
 
@@ -74,13 +84,13 @@ public class ContentManager {
                     // Loop through the array elements
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
-                        mBench1 = new SimpleSensor(jsonObject);
-
+                        mBench1 = new SimpleSensor(jsonObject, "Bench1");
+                        mSimpleSensorList.add(mBench1);
                     }
                     numberOfRequestsToMake--;
 
-                    if(numberOfRequestsToMake == 0) {
-                        if(!hasRequestFailed) {
+                    if (numberOfRequestsToMake == 0) {
+                        if (!hasRequestFailed) {
                             //All requests finished correctly
                             mDataListener.notifyRetrieved();
                         } else {
@@ -115,13 +125,14 @@ public class ContentManager {
                     // Loop through the array elements
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
-                        mBench2 = new HumiditySensor(jsonObject);
+                        mBench2 = new HumiditySensor(jsonObject, "Bench2");
+                        mSimpleSensorList.add(mBench2);
                     }
 
                     numberOfRequestsToMake--;
 
-                    if(numberOfRequestsToMake == 0) {
-                        if(!hasRequestFailed) {
+                    if (numberOfRequestsToMake == 0) {
+                        if (!hasRequestFailed) {
                             //All requests finished correctly
                             mDataListener.notifyRetrieved();
                         } else {
@@ -158,13 +169,13 @@ public class ContentManager {
                     // Loop through the array elements
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
-                        mBench3 = new SimpleSensor(jsonObject);
-
+                        mBench3 = new SimpleSensor(jsonObject, "Bench3");
+                        mSimpleSensorList.add(mBench3);
                     }
                     numberOfRequestsToMake--;
 
-                    if(numberOfRequestsToMake == 0) {
-                        if(!hasRequestFailed) {
+                    if (numberOfRequestsToMake == 0) {
+                        if (!hasRequestFailed) {
                             //All requests finished correctly
                             mDataListener.notifyRetrieved();
                         } else {
@@ -199,13 +210,14 @@ public class ContentManager {
                     // Loop through the array elements
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
-                        mStove1 = new SimpleSensor(jsonObject);
+                        mStove1 = new SimpleSensor(jsonObject, "Stove1");
+                        mSimpleSensorList.add(mStove1);
 
                     }
                     numberOfRequestsToMake--;
 
-                    if(numberOfRequestsToMake == 0) {
-                        if(!hasRequestFailed) {
+                    if (numberOfRequestsToMake == 0) {
+                        if (!hasRequestFailed) {
                             //All requests finished correctly
                             mDataListener.notifyRetrieved();
                         } else {
@@ -240,13 +252,13 @@ public class ContentManager {
                     // Loop through the array elements
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
-                        mStove2 = new SimpleSensor(jsonObject);
-
+                        mStove2 = new SimpleSensor(jsonObject, "Stove2");
+                        mSimpleSensorList.add(mStove2);
                     }
                     numberOfRequestsToMake--;
 
-                    if(numberOfRequestsToMake == 0) {
-                        if(!hasRequestFailed) {
+                    if (numberOfRequestsToMake == 0) {
+                        if (!hasRequestFailed) {
                             //All requests finished correctly
                             mDataListener.notifyRetrieved();
                         } else {
@@ -281,13 +293,13 @@ public class ContentManager {
                     // Loop through the array elements
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
-                        mCeiling1 = new HumiditySensor(jsonObject);
-
+                        mCeiling1 = new HumiditySensor(jsonObject, "Ceiling1");
+                        mSimpleSensorList.add(mCeiling1);
                     }
                     numberOfRequestsToMake--;
 
-                    if(numberOfRequestsToMake == 0) {
-                        if(!hasRequestFailed) {
+                    if (numberOfRequestsToMake == 0) {
+                        if (!hasRequestFailed) {
                             //All requests finished correctly
                             mDataListener.notifyRetrieved();
                         } else {
@@ -322,13 +334,14 @@ public class ContentManager {
                     // Loop through the array elements
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
-                        mCeiling2 = new HumiditySensor(jsonObject);
+                        mCeiling2 = new HumiditySensor(jsonObject, "Ceiling2");
+                        mSimpleSensorList.add(mCeiling2);
 
                     }
                     numberOfRequestsToMake--;
 
-                    if(numberOfRequestsToMake == 0) {
-                        if(!hasRequestFailed) {
+                    if (numberOfRequestsToMake == 0) {
+                        if (!hasRequestFailed) {
                             //All requests finished correctly
                             mDataListener.notifyRetrieved();
                         } else {
@@ -363,15 +376,18 @@ public class ContentManager {
                     // Loop through the array elements
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
-                        mFloor1 = new HumiditySensor(jsonObject);
+                        mFloor1 = new HumiditySensor(jsonObject, "Floor1");
+                        mSimpleSensorList.add(mFloor1);
+                        System.out.println("LAST ADDED");
 
                     }
                     numberOfRequestsToMake--;
 
-                    if(numberOfRequestsToMake == 0) {
-                        if(!hasRequestFailed) {
+                    if (numberOfRequestsToMake == 0) {
+                        if (!hasRequestFailed) {
                             //All requests finished correctly
                             mDataListener.notifyRetrieved();
+
                         } else {
                             //At least one request failed
                             mDataListener.notifyNotRetrieved();
@@ -404,13 +420,15 @@ public class ContentManager {
                     // Loop through the array elements
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
-                        mDoorway1 = new HumiditySensor(jsonObject);
+                        mDoorway1 = new HumiditySensor(jsonObject, "Doorway1");
+                        mSimpleSensorList.add(mDoorway1);
 
                     }
                     numberOfRequestsToMake--;
 
-                    if(numberOfRequestsToMake == 0) {
-                        if(!hasRequestFailed) {
+
+                    if (numberOfRequestsToMake == 0) {
+                        if (!hasRequestFailed) {
                             //All requests finished correctly
                             mDataListener.notifyRetrieved();
                         } else {
@@ -433,48 +451,6 @@ public class ContentManager {
 
         queue.add(jsonArrayRequest);
     }
-
-    private void fetchOutdoor1() {
-        RequestQueue queue = Volley.newRequestQueue(mContext);
-        String url = "https://apigtw.vaisala.com/hackjunction2018/saunameasurements/latest?SensorID=Outdoor1&limit=1";
-
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                try {
-                    // Loop through the array elements
-                    for (int i = 0; i < response.length(); i++) {
-                        JSONObject jsonObject = response.getJSONObject(i);
-                        mOutdoor1 = new HumiditySensor(jsonObject);
-
-                    }
-                    numberOfRequestsToMake--;
-
-                    if(numberOfRequestsToMake == 0) {
-                        if(!hasRequestFailed) {
-                            //All requests finished correctly
-                            mDataListener.notifyRetrieved();
-                        } else {
-                            //At least one request failed
-                            mDataListener.notifyNotRetrieved();
-                        }
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                System.out.println("VOLLEY ERROR: " + error);
-                Toast.makeText(mContext, "Sorry, internet error", Toast.LENGTH_SHORT).show();
-                mDataListener.notifyNotRetrieved();
-            }
-        });
-
-        queue.add(jsonArrayRequest);
-    }
-
 
 
     public SimpleSensor getmBench1() {
@@ -513,7 +489,39 @@ public class ContentManager {
         return mDoorway1;
     }
 
-    public HumiditySensor getmOutdoor1() {
-        return mOutdoor1;
+    public int getAverageTemperature() {
+        return averageTemperature;
+    }
+
+    public int getAverageHumidity() {
+        return averageHumidity;
+    }
+
+    public void setAverageTemperature(int averageTemperature) {
+        this.averageTemperature = averageTemperature;
+    }
+
+    public void setAverageHumidity(int averageHumidity) {
+        this.averageHumidity = averageHumidity;
+    }
+
+    public List<SimpleSensor> getmSimpleSensorList() {
+        return mSimpleSensorList;
+    }
+
+    public SimpleSensor getLowestTemperatureSensor() {
+        return lowestTemperatureSensor;
+    }
+
+    public SimpleSensor getHighestTemperatureSensor() {
+        return highestTemperatureSensor;
+    }
+
+    public void setLowestTemperatureSensor(SimpleSensor lowestTemperatureSensor) {
+        this.lowestTemperatureSensor = lowestTemperatureSensor;
+    }
+
+    public void setHighestTemperatureSensor(SimpleSensor highestTemperatureSensor) {
+        this.highestTemperatureSensor = highestTemperatureSensor;
     }
 }
