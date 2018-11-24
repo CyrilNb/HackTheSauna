@@ -57,7 +57,8 @@ public class PersonalActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new SessionAdapter(myDataset);
+        String[] data = new String[1];
+        mAdapter = new SessionAdapter(data);
         mRecyclerView.setAdapter(mAdapter);
 
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);

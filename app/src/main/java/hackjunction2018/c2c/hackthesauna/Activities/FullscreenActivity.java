@@ -1,14 +1,22 @@
 package hackjunction2018.c2c.hackthesauna.Activities;
 
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import java.util.Comparator;
+import java.util.NoSuchElementException;
 
 import hackjunction2018.c2c.hackthesauna.ContentManager;
+import hackjunction2018.c2c.hackthesauna.Model.HumiditySensor;
+import hackjunction2018.c2c.hackthesauna.Model.SimpleSensor;
 import hackjunction2018.c2c.hackthesauna.R;
 import in.unicodelabs.kdgaugeview.KdGaugeView;
 
@@ -54,6 +62,15 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
         gaugeTemperatureSauna.setSpeed(80);
 
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                contentManager.fetchAllData();
+                handler.postDelayed(this, 3000);
+            }
+        }, 3000);
     }
 
     @Override
@@ -103,16 +120,40 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
 
     @Override
     public void notifyRetrieved() {
-        /*System.out.println("BENCH1: " + this.contentManager.getmBench1());
-        System.out.println("BENCH2: " + this.contentManager.getmBench2());
-        System.out.println("BENCH3: " + this.contentManager.getmBench3());
-        System.out.println("CEILING 1: " + this.contentManager.getmCeiling1());
-        System.out.println("CEILING 2: " + this.contentManager.getmCeiling1());
-        System.out.println("FLOOR 1: " + this.contentManager.getmFloor1());
-        System.out.println("STOVE 1: " + this.contentManager.getmStove1());
-        System.out.println("STOVE 2: " + this.contentManager.getmStove2());
-        System.out.println("DOORWAY 1: " + this.contentManager.getmDoorway1());
-        System.out.println("OUTDOOR 1: " + this.contentManager.getmOutdoor1());*/
+        double sumTemperature = 0;
+        double sumHumdity = 0;
+        int countHumditySensor = 0;
+        for (SimpleSensor simpleSensor : this.contentManager.getmSimpleSensorList()) {
+            sumTemperature += simpleSensor.getmTemperature();
+            if (simpleSensor instanceof HumiditySensor) {
+                sumHumdity += ((HumiditySensor) simpleSensor).getmRelativeHumidity();
+                ++countHumditySensor;
+            }
+        }
+
+        this.contentManager.setAverageTemperature((int) (sumTemperature / (this.contentManager.getmSimpleSensorList().size())));
+        this.contentManager.setAverageHumidity((int) (sumHumdity / countHumditySensor));
+        System.out.println(this.contentManager.getAverageHumidity());
+        System.out.println(this.contentManager.getAverageTemperature());
+
+        try {
+            SimpleSensor lowestTemperatureSensor = this.contentManager.getmSimpleSensorList()
+                    .stream()
+                    .min(Comparator.comparing(SimpleSensor::getmTemperature))
+                    .orElseThrow(NoSuchElementException::new);
+            SimpleSensor highestTemperatureSensor = this.contentManager.getmSimpleSensorList()
+                    .stream()
+                    .max(Comparator.comparing(SimpleSensor::getmTemperature))
+                    .orElseThrow(NoSuchElementException::new);
+            this.contentManager.setLowestTemperatureSensor(lowestTemperatureSensor);
+            this.contentManager.setHighestTemperatureSensor(highestTemperatureSensor);
+            System.out.println(this.contentManager.getLowestTemperatureSensor());
+            System.out.println(this.contentManager.getHighestTemperatureSensor());
+        } catch (Throwable throwable) {
+            System.out.println(throwable);
+            throwable.printStackTrace();
+        }
+
     }
 
     @Override
@@ -121,8 +162,33 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
         snackbar.show();
     }
 
+<<<<<<< HEAD
     @Override
     public void onBackPressed() {
         overridePendingTransition(R.anim.slide_out, R.anim.slide_in);
     }
+=======
+    /*private void longPollingUpdate() {
+        mHandler = new Handler();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    try {
+                        Thread.sleep(3000);
+                        mHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                contentManager.fetchAllData();
+                                System.out.println("UPDATED");
+                                System.out.println(contentManager.getHighestTemperatureSensor().getmTimeStamp());
+                            }
+                        });
+                    } catch (Exception e) {
+                    }
+                }
+            }
+        }).start();
+    }*/
+>>>>>>> 4ef6114499cace5209b5b5da7f351ec31d7d4dde
 }
