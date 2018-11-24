@@ -14,17 +14,16 @@
         android:orientation="horizontal"
         android:weightSum="2">
 
-        <android.support.v7.widget.CardView
-            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:id="@+id/card_view_timer"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            card_view:cardCornerRadius="4dp"
-            android:layout_weight="1"
+            android:layout_gravity="center"
             android:layout_margin="15dp"
-            card_view:cardPreventCornerOverlap="false"
-            android:background="@color/white">
+            android:layout_weight="1"
+            android:background="@color/white"
+            card_view:cardCornerRadius="4dp"
+            card_view:cardPreventCornerOverlap="false">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -34,11 +33,11 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Set a timer"
+                    android:background="@color/colorPrimary"
+                    android:text="TIMER"
                     android:textAlignment="center"
-                    android:textSize="60sp"
                     android:textColor="@color/white"
-                    android:background="@color/colorPrimary"/>
+                    android:textSize="60sp" />
 
                 <Button
                     android:id="@+id/button_select_timer"
@@ -46,42 +45,84 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     android:background="@color/colorPrimary"
+                    android:text="Select a duration"
                     android:textColor="@color/white"
-                    android:textSize="40dp"
-                    android:text="Select a duration"/>
+                    android:textSize="40dp" />
+
+                <LinearLayout
+                    android:id="@+id/linearTimerRecap"
+                    android:layout_marginTop="100dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/txtViewHours"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="00"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="60sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" : "
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="30sp" />
+                    <TextView
+                        android:id="@+id/txtViewMinutes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="60sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" : "
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="30sp" />
+                    <TextView
+                        android:id="@+id/txtViewSeconds"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="60sp" />
+                </LinearLayout>
 
             </LinearLayout>
 
 
-
         </android.support.v7.widget.CardView>
 
-        <android.support.v7.widget.CardView
-            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:id="@+id/card_view_sessions"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            card_view:cardCornerRadius="4dp"
-            android:layout_weight="1"
+            android:layout_gravity="center"
             android:layout_margin="15dp"
-            card_view:cardPreventCornerOverlap="false"
-            android:background="@color/white">
+            android:layout_weight="1"
+            android:background="@color/white"
+            card_view:cardCornerRadius="4dp"
+            card_view:cardPreventCornerOverlap="false">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
                 android:text="My last sessions"
                 android:textAlignment="center"
-                android:textSize="60sp"
                 android:textColor="@color/white"
-                android:background="@color/colorPrimary"/>
+                android:textSize="60sp" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/last_sessions_recycler_view"
-                android:scrollbars="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:scrollbars="vertical">
 
             </android.support.v7.widget.RecyclerView>
 

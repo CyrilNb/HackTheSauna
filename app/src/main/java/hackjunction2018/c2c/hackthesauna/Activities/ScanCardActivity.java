@@ -1,17 +1,19 @@
 package hackjunction2018.c2c.hackthesauna.Activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 
 import hackjunction2018.c2c.hackthesauna.R;
 
 public class ScanCardActivity extends AppCompatActivity {
 
     private String type;
-    private View layout;
+    private ImageView scanCardImgView;
     private FloatingActionButton mBackButton;
 
     @Override
@@ -28,13 +30,13 @@ public class ScanCardActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 
         Bundle b = getIntent().getExtras();
-        if(b != null)
+        if (b != null)
             type = b.getString("type");
 
-        layout = findViewById(R.id.scanCardLayout);
+        scanCardImgView = findViewById(R.id.scanCardImgView);
         mBackButton = findViewById(R.id.back_button);
 
-        layout.setOnClickListener(new View.OnClickListener() {
+        scanCardImgView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 cardIsValid();
@@ -44,13 +46,10 @@ public class ScanCardActivity extends AppCompatActivity {
         mBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                overridePendingTransition(R.anim.slide_out, R.anim.slide_in);
-                Intent backIntent = new Intent(getApplicationContext(), FullscreenActivity.class);
-                startActivity(backIntent);
+               goBackToMainActivity();
             }
         });
 
-        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
     }
 
     @Override
@@ -63,7 +62,7 @@ public class ScanCardActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+
     }
 
     @Override
@@ -76,22 +75,38 @@ public class ScanCardActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
     }
 
     @Override
     public void onBackPressed() {
-        overridePendingTransition(R.anim.slide_in_exit, R.anim.slide_out_exit);
+        goBackToMainActivity();
     }
 
-    public void cardIsValid(){
-        if(type.equals("in")){
+    private void cardIsValid() {
+        Bundle args = new Bundle();
+        if (type.equals("in")) {
             Intent personalIntent = new Intent(this, PersonalActivity.class);
-            startActivity(personalIntent);
-        }else{
+            args.putString("type", "in");
+            personalIntent.putExtras(args);
+            startActivityForResult(personalIntent, 5);
+            //finish();
+            overridePendingTransition(R.anim.activity_enter, R.anim.activity_exit);
+        } else {
             Intent recapIntent = new Intent(this, RecapActivity.class);
-            startActivity(recapIntent);
+            args.putString("type", "out");
+            recapIntent.putExtras(args);
+            startActivityForResult(recapIntent, 6);
+            //finish();
+            overridePendingTransition(R.anim.activity_enter, R.anim.activity_exit);
         }
     }
+
+    private void goBackToMainActivity(){
+        Intent returnIntent = new Intent();
+        setResult(RESULT_CANCELED, returnIntent);
+        finish();
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+    }
+
 
 }

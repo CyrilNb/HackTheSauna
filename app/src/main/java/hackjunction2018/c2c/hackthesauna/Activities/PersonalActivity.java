@@ -9,8 +9,11 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.codetroopers.betterpickers.hmspicker.HmsPickerBuilder;
+import com.codetroopers.betterpickers.hmspicker.HmsPickerDialogFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +22,15 @@ import hackjunction2018.c2c.hackthesauna.Model.Session;
 import hackjunction2018.c2c.hackthesauna.R;
 import hackjunction2018.c2c.hackthesauna.SessionAdapter;
 
-public class PersonalActivity extends AppCompatActivity {
+public class PersonalActivity extends AppCompatActivity implements HmsPickerDialogFragment.HmsPickerDialogHandlerV2{
 
+    private LinearLayout linearLayoutRecapTimer;
     private Button mButtonTimer;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private TextView txtViewHours, txtViewMinutes, txtViewSeconds;
+    private int hours, minutes, seconds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +44,11 @@ public class PersonalActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 
+        linearLayoutRecapTimer = findViewById(R.id.linearTimerRecap);
         mButtonTimer = findViewById(R.id.button_select_timer);
+        txtViewHours = findViewById(R.id.txtViewHours);
+        txtViewMinutes = findViewById(R.id.txtViewMinutes);
+        txtViewSeconds = findViewById(R.id.txtViewSeconds);
 
         mButtonTimer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +57,7 @@ public class PersonalActivity extends AppCompatActivity {
                         .setFragmentManager(getSupportFragmentManager())
                         .setStyleResId(R.style.BetterPickersDialogFragment);
                 hpb.show();
+                mButtonTimer.setVisibility(View.GONE);
             }
         });
 
@@ -107,4 +118,27 @@ public class PersonalActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_out, R.anim.slide_in);
     }
 
+    @Override
+    public void onDialogHmsSet(int reference, boolean isNegative, int hours, int minutes, int seconds) {
+        linearLayoutRecapTimer.setVisibility(View.VISIBLE);
+        this.hours = hours;
+        this.minutes = minutes;
+        this.seconds = seconds;
+        txtViewSeconds.setText(Integer.toString(seconds));
+        txtViewMinutes.setText(Integer.toString(minutes));
+        txtViewHours.setText(Integer.toString(hours));
+
+    }
+
+    public int getHours() {
+        return hours;
+    }
+
+    public int getMinutes() {
+        return minutes;
+    }
+
+    public int getSeconds() {
+        return seconds;
+    }
 }

@@ -1,5 +1,6 @@
 package hackjunction2018.c2c.hackthesauna.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -50,9 +51,6 @@ public class RecapActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
     }
 
-    @Override
-    public void onBackPressed() {
-        overridePendingTransition(R.anim.slide_out, R.anim.slide_in);
-    }
+
 
 }

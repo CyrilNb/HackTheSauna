@@ -47,10 +47,10 @@
                     android:layout_margin="10dp"
                     app:dialSpeedAlertColor="@color/colorRed1"
                     app:dialSpeedColor="@color/colorGreen1"
-                    app:maxSpeed="220"
+                    app:maxSpeed="190"
                     app:speedDialRingInnerPadding="15dp"
                     app:speedDialRingWidth="20dp"
-                    app:speed_limit="220"
+                    app:speed_limit="190"
                     app:unitOfMeasurement="°C"
                     app:unitOfMeasurementTextSize="40dp" />
 
@@ -96,7 +96,7 @@
                     android:text="am"
                     android:textAlignment="center"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="30sp" />
+                    android:textSize="25sp" />
 
                 <TextView
                     android:id="@+id/date_text"
@@ -105,7 +105,7 @@
                     android:text="Wednesday 15th November"
                     android:textAlignment="center"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="60sp" />
+                    android:textSize="50sp" />
 
             </LinearLayout>
 
@@ -155,26 +155,25 @@
     </LinearLayout>
 
 
+    <LinearLayout
+        android:id="@+id/second_line_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:orientation="horizontal"
+        android:weightSum="4">
 
-        <LinearLayout
-            android:id="@+id/second_line_container"
-            android:layout_width="match_parent"
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view_high_temp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
             android:layout_weight="2"
-            android:weightSum="4">
+            android:background="@color/white"
+            card_view:cardCornerRadius="4dp"
+            card_view:cardPreventCornerOverlap="false">
 
-            <android.support.v7.widget.CardView
-                xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/card_view_high_temp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="5dp"
-                android:layout_weight="2"
-                android:background="@color/white"
-                card_view:cardCornerRadius="4dp"
-                card_view:cardPreventCornerOverlap="false">
             <LinearLayout
                 android:id="@+id/low_temp_desc"
                 android:layout_width="match_parent"
@@ -201,19 +200,19 @@
                     android:textSize="35sp" />
 
             </LinearLayout>
-            </android.support.v7.widget.CardView>
+        </android.support.v7.widget.CardView>
 
-            <android.support.v7.widget.CardView
-                xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/card_view_low_temp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="5dp"
-                android:layout_weight="2"
-                android:background="@color/white"
-                card_view:cardCornerRadius="4dp"
-                card_view:cardPreventCornerOverlap="false">
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view_low_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:layout_weight="2"
+            android:background="@color/white"
+            card_view:cardCornerRadius="4dp"
+            card_view:cardPreventCornerOverlap="false">
+
             <LinearLayout
                 android:id="@+id/high_temp_desc"
                 android:layout_width="match_parent"
@@ -240,9 +239,9 @@
                     android:textSize="35sp" />
 
             </LinearLayout>
-            </android.support.v7.widget.CardView>
+        </android.support.v7.widget.CardView>
 
-            <!--
+        <!--
             <android.support.v7.widget.CardView
                 xmlns:card_view="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/card_view_button"
@@ -273,28 +272,26 @@
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>-->
-        </LinearLayout>
+    </LinearLayout>
 
 
-
-    <android.support.v7.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view_third_container"
-        android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        card_view:cardCornerRadius="4dp"
-        android:layout_weight="2"
-        android:background="@color/white">
+        android:layout_gravity="center_vertical|center"
+        android:layout_weight="0"
+        android:background="@color/white"
+        card_view:cardCornerRadius="4dp">
 
         <LinearLayout
             android:id="@+id/third_line_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_gravity="bottom"
             android:background="@color/colorPrimaryDark"
-            android:weightSum="3"
->
+            android:orientation="horizontal"
+            android:weightSum="3">
 
             <Button
                 android:id="@+id/get_in_button"
@@ -310,25 +307,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="horizontal"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
                     android:text="8/10"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="70sp"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:layout_margin="10dp"/>
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:src="@drawable/people"
-                    android:layout_margin="10dp"/>
+                    android:layout_margin="10dp"
+                    android:src="@drawable/people" />
 
             </LinearLayout>
 

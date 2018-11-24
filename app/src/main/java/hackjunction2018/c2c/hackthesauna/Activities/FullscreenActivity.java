@@ -1,5 +1,6 @@
 package hackjunction2018.c2c.hackthesauna.Activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.design.widget.Snackbar;
@@ -68,45 +69,22 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
         getInButton.setOnClickListener(this);
         getOutButton.setOnClickListener(this);
 
-        updateDateTime();
-        contentManager = ContentManager.getInstance(this, this);
-
-        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
-
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                contentManager.fetchAllData();
-                handler.postDelayed(this, 3000);
-            }
-        }, 3000);
     }
 
+
     @Override
-    protected void onResume() {
+    public void onResume()
+    {  // After a pause OR at startup
         super.onResume();
-        View decorView = getWindow().getDecorView();
-        decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
-                | View.SYSTEM_UI_FLAG_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+        //Refresh the stuff here
+        initialize();
+
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        View decorView = getWindow().getDecorView();
-        decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
-                | View.SYSTEM_UI_FLAG_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+    public void onRestart() {
+        super.onRestart();
+        initialize();
     }
 
     @Override
@@ -117,13 +95,17 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
                 Intent scanCardIntent = new Intent(this, ScanCardActivity.class);
                 args.putString("type", "in");
                 scanCardIntent.putExtras(args);
-                startActivity(scanCardIntent);
+                startActivityForResult(scanCardIntent, 1);
+                //finish();
+                overridePendingTransition(R.anim.activity_enter, R.anim.activity_exit);
                 break;
             case R.id.get_out_button:
                 Intent scanCardIntent2 = new Intent(this, ScanCardActivity.class);
-                args.putString("type", "out");
+                args.putString("type", "ou");
                 scanCardIntent2.putExtras(args);
-                startActivity(scanCardIntent2);
+                startActivityForResult(scanCardIntent2, 1);
+                //finish();
+                overridePendingTransition(R.anim.activity_enter, R.anim.activity_exit);
                 break;
         }
     }
@@ -139,6 +121,7 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
         int countHumditySensor = 0;
         for (SimpleSensor simpleSensor : this.contentManager.getmSimpleSensorList()) {
             sumTemperature += simpleSensor.getmTemperature();
+            System.out.println(simpleSensor.getmTemperature());
             if (simpleSensor instanceof HumiditySensor) {
                 sumHumdity += ((HumiditySensor) simpleSensor).getmRelativeHumidity();
                 ++countHumditySensor;
@@ -147,8 +130,8 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
 
         this.contentManager.setAverageTemperature((int) (sumTemperature / (this.contentManager.getmSimpleSensorList().size())));
         this.contentManager.setAverageHumidity((sumHumdity / countHumditySensor));
-        System.out.println(this.contentManager.getAverageHumidity());
-        System.out.println(this.contentManager.getAverageTemperature());
+        //System.out.println(this.contentManager.getAverageHumidity());
+        //System.out.println(this.contentManager.getAverageTemperature());
 
         try {
             SimpleSensor lowestTemperatureSensor = this.contentManager.getmSimpleSensorList()
@@ -163,8 +146,8 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
                     .orElseThrow(NoSuchElementException::new);
             this.contentManager.setLowestTemperatureSensor(lowestTemperatureSensor);
             this.contentManager.setHighestTemperatureSensor(highestTemperatureSensor);
-            System.out.println(this.contentManager.getLowestTemperatureSensor());
-            System.out.println(this.contentManager.getHighestTemperatureSensor());
+            //System.out.println(this.contentManager.getLowestTemperatureSensor());
+            //System.out.println(this.contentManager.getHighestTemperatureSensor());
 
             //UPDATE UI
             gaugeTemperatureSauna.setSpeed(this.contentManager.getAverageTemperature());
@@ -189,10 +172,6 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
         snackbar.show();
     }
 
-    @Override
-    public void onBackPressed() {
-        overridePendingTransition(R.anim.slide_out, R.anim.slide_in);
-    }
 
     /**
      * Method to update and display current time
@@ -210,4 +189,45 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
         amtxtView.setText(amString);
     }
 
+    /**
+     * Methods which initializes the UI with data
+     */
+    private void initialize(){
+        //INIT DATA
+        updateDateTime();
+        contentManager = ContentManager.getInstance(this, this);
+        contentManager.fetchAllData();
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                contentManager.fetchAllData();
+                handler.postDelayed(this, 3000);
+            }
+        }, 3000);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+                // launch next activity depending of the result
+                /*String result=data.getStringExtra("type");
+                if (result.equals("in")) {
+                    Intent personalIntent = new Intent(this, PersonalActivity.class);
+                    startActivityForResult(personalIntent, 1);
+                    overridePendingTransition(R.anim.activity_enter, R.anim.activity_exit);
+                } else {
+                    Intent recapIntent = new Intent(this, RecapActivity.class);
+                    startActivityForResult(recapIntent, 2);
+                    overridePendingTransition(R.anim.activity_enter, R.anim.activity_exit);
+                }*/
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                // do nothing, it's from a button back pressed.
+            }
+        }
+    }
 }

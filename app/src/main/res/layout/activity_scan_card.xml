@@ -7,7 +7,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="hackjunction2018.c2c.hackthesauna.Activities.ScanCardActivity"
     tools:showIn="@layout/activity_scan_card"
-    android:id="@+id/scanCardLayout">
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,9 +23,11 @@
             android:textAlignment="center"/>
 
         <ImageView
+            android:id="@+id/scanCardImgView"
             android:layout_width="400dp"
             android:layout_height="400dp"
-            android:src="@drawable/card"/>
+            android:src="@drawable/card"
+            />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/back_button"
@@ -33,7 +35,9 @@
             android:layout_height="120dp"
             android:layout_marginTop="60dp"
             android:src="@drawable/baseline_arrow_back_white_24"
-            android:backgroundTint="@color/colorPrimary"/>
+            android:backgroundTint="@color/colorPrimary"
+            android:focusable="true"
+            android:clickable="true"/>
 
     </LinearLayout>
 
