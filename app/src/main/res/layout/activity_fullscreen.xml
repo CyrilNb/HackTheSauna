@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorGrey1"
     tools:context=".FullscreenActivity"
     android:orientation="vertical"
     android:weightSum="5">
@@ -12,208 +13,305 @@
         android:id="@+id/first_line_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:background="@color/colorGrey1"
         android:orientation="horizontal"
-        android:background="@color/colorPrimaryDark"
-        android:weightSum="3"
-        android:layout_weight="2">
+        android:weightSum="3">
 
-        <LinearLayout
-            android:id="@+id/temperature_sauna"
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view_2"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:background="@color/colorAccent"
             android:layout_gravity="center"
-            android:gravity="center">
+            android:layout_margin="15dp"
+            android:layout_weight="1"
+            card_view:cardCornerRadius="4dp">
 
-            <ImageView
-                android:id="@+id/temperature_image"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_launcher_background"/>
+            <LinearLayout
+                android:id="@+id/temperature_sauna"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/temperature_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:textSize="70sp"
-                android:textAlignment="center"
-                android:text="46°C"/>
+                <in.unicodelabs.kdgaugeview.KdGaugeView
+                    android:id="@+id/speedMeter"
+                    android:layout_width="253dp"
+                    android:layout_height="243dp"
+                    android:layout_gravity="center"
+                    app:dialSpeedAlertColor="@color/colorRed1"
+                    app:dialSpeedColor="@color/colorGreen1"
+                    app:maxSpeed="220"
+                    app:speedDialRingInnerPadding="15dp"
+                    app:speedDialRingWidth="20dp"
+                    app:speed_limit="220"
+                    app:unitOfMeasurement="°C"
+                    app:unitOfMeasurementTextSize="40dp" />
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/temperature_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="46°C"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="70sp" />
 
-        <LinearLayout
-            android:id="@+id/date_sauna"
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
             android:layout_gravity="center"
-            android:gravity="center">
+            android:layout_margin="15dp"
+            android:layout_weight="1"
+            card_view:cardCornerRadius="4dp">
 
-            <TextView
-                android:id="@+id/time_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="30sp"
-                android:textAlignment="center"
-                android:text="16:40"/>
+            <LinearLayout
+                android:id="@+id/date_sauna"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/date_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textAlignment="center"
-                android:text="Wednesday 15 November"/>
+                <TextView
+                    android:id="@+id/time_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="16:40"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="150sp" />
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/date_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Wednesday 15 November"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="30sp" />
 
-        <LinearLayout
-            android:id="@+id/moisture_sauna"
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view_3"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
             android:layout_gravity="center"
-            android:gravity="center">
+            android:layout_margin="15dp"
+            android:layout_weight="1"
+            card_view:cardCornerRadius="4dp">
 
-            <ImageView
-                android:id="@+id/moisture_image"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_launcher_background"/>
+            <LinearLayout
+                android:id="@+id/moisture_sauna"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/moisture_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:textSize="70sp"
-                android:textAlignment="center"
-                android:text="9°C"/>
+                <ImageView
+                    android:id="@+id/moisture_image"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/drop" />
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/moisture_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="15,7%"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="70sp" />
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/second_line_container"
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view_second_container"
+        android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/colorPrimaryDark"
-        android:weightSum="5"
-        android:layout_weight="2">
+        card_view:cardCornerRadius="4dp"
+        android:layout_weight="2"
+        android:layout_margin="15dp"
+        card_view:cardPreventCornerOverlap="false"
+        android:background="@color/white">
 
         <LinearLayout
-            android:id="@+id/low_temp_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:id="@+id/second_line_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="5"
+            >
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Low temp"
-                android:textColor="@color/white"
-                android:textAlignment="center"
-                android:textSize="50sp"/>
+            <LinearLayout
+                android:id="@+id/low_temp_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:orientation="vertical"
+                android:gravity="center">
 
-            <TextView
-                android:id="@+id/low_temp_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Bench 1 - 26°C"
-                android:textColor="@color/white"
-                android:textAlignment="center"
-                android:textSize="35sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:text="Low temp"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="50sp" />
+
+                <TextView
+                    android:id="@+id/low_temp_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Bench 1 - 26°C"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="35sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/high_temp_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:text="High temp"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="50sp" />
+
+                <TextView
+                    android:id="@+id/high_temp_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Bench 2 - 66°C"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="35sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/show_sauna"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageButton
+                    android:layout_width="200dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="20dp"
+                    android:adjustViewBounds="true"
+                    android:background="@color/colorPrimary"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/eye" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/high_temp_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:orientation="vertical"
-            android:gravity="center">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="High temp"
-                android:textColor="@color/white"
-                android:textAlignment="center"
-                android:textSize="50sp"/>
+    </android.support.v7.widget.CardView>
 
-            <TextView
-                android:id="@+id/high_temp_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Bench 2 - 66°C"
-                android:textColor="@color/white"
-                android:textAlignment="center"
-                android:textSize="35sp"/>
-
-        </LinearLayout>
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view_third_container"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="4dp"
+        android:layout_weight="2"
+        android:background="@color/white">
 
         <LinearLayout
-            android:id="@+id/show_sauna"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:id="@+id/third_line_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/colorPrimaryDark"
+            android:weightSum="3"
+>
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"/>
+                android:layout_weight="1"
+                android:background="@color/colorGreen1"
+                android:textColor="@color/white"
+                android:textSize="55sp"
+                android:text="GET IN"
+                />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="8/10"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="70sp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_margin="10dp"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/people"
+                    android:layout_margin="10dp"/>
+
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/colorRed1"
+                android:textColor="@color/white"
+                android:textSize="55sp"
+                android:text="GET OUT"/>
         </LinearLayout>
 
-    </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/third_line_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/colorPrimaryDark"
-        android:weightSum="3"
-        android:layout_weight="2">
+    </android.support.v7.widget.CardView>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </LinearLayout>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
-    </LinearLayout>
 
 </LinearLayout>

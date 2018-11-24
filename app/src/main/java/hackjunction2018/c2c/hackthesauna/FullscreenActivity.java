@@ -8,11 +8,15 @@ import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 
+import in.unicodelabs.kdgaugeview.KdGaugeView;
+
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
 public class FullscreenActivity extends AppCompatActivity {
+
+    KdGaugeView gaugeTemperatureSauna;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +32,11 @@ public class FullscreenActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 
+        getSupportActionBar().hide();
+
+        gaugeTemperatureSauna = findViewById(R.id.speedMeter);
+
+        gaugeTemperatureSauna.setSpeed(80);
     }
 
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-    }
 }
