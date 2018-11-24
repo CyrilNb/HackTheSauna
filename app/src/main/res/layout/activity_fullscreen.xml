@@ -265,14 +265,14 @@
 >
 
             <Button
+                android:id="@+id/get_in_button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@color/colorGreen1"
-                android:textColor="@color/white"
-                android:textSize="55sp"
                 android:text="GET IN"
-                />
+                android:textColor="@color/white"
+                android:textSize="55sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -301,13 +301,14 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/get_out_button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@color/colorRed1"
+                android:text="GET OUT"
                 android:textColor="@color/white"
-                android:textSize="55sp"
-                android:text="GET OUT"/>
+                android:textSize="55sp" />
         </LinearLayout>
 
 

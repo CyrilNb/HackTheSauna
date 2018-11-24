@@ -32,7 +32,7 @@ public class PersonalActivity extends AppCompatActivity {
                 hpb.show();
             }
         });
-
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
     }
 
 

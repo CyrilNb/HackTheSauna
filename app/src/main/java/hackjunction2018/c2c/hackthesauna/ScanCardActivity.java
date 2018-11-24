@@ -9,6 +9,8 @@ import android.view.View;
 
 public class ScanCardActivity extends AppCompatActivity {
 
+    String type;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,14 +18,11 @@ public class ScanCardActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        Bundle b = getIntent().getExtras();
+        if(b != null)
+            type = b.getString("type");
+
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
     }
 
 }
