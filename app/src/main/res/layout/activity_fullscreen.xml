@@ -87,16 +87,25 @@
                     android:text="16:40"
                     android:textAlignment="center"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="150sp" />
+                    android:textSize="120sp" />
+
+                <TextView
+                    android:id="@+id/am_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="am"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="30sp" />
 
                 <TextView
                     android:id="@+id/date_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Wednesday 15 November"
+                    android:text="Wednesday 15th November"
                     android:textAlignment="center"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="30sp" />
+                    android:textSize="60sp" />
 
             </LinearLayout>
 
@@ -134,7 +143,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="15,7%"
                     android:textAlignment="center"
                     android:textColor="@color/colorPrimary"
                     android:textSize="70sp" />
@@ -179,7 +187,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/colorPrimary"
-                    android:text="Low temp"
+                    android:text="Lowest temp"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="50sp" />
@@ -188,7 +196,6 @@
                     android:id="@+id/low_temp_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Bench 1 - 26°C"
                     android:textAlignment="center"
                     android:textColor="@color/colorPrimary"
                     android:textSize="35sp" />
@@ -219,7 +226,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/colorPrimary"
-                    android:text="High temp"
+                    android:text="Highest temp"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="50sp" />
@@ -228,7 +235,6 @@
                     android:id="@+id/high_temp_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Bench 2 - 66°C"
                     android:textAlignment="center"
                     android:textColor="@color/colorPrimary"
                     android:textSize="35sp" />

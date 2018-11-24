@@ -33,7 +33,7 @@ public class ContentManager {
     private int averageTemperature;
     private SimpleSensor lowestTemperatureSensor;
     private SimpleSensor highestTemperatureSensor;
-    private int averageHumidity;
+    private double averageHumidity;
     private RequestQueue mRequestQueue;
 
 
@@ -86,7 +86,7 @@ public class ContentManager {
                     // Loop through the array elements
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
-                        mBench1 = new SimpleSensor(jsonObject, "Bench1");
+                        mBench1 = new SimpleSensor(jsonObject, "Bench 1");
                         mSimpleSensorList.add(mBench1);
                     }
                     numberOfRequestsToMake--;
@@ -126,7 +126,7 @@ public class ContentManager {
                     // Loop through the array elements
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
-                        mBench2 = new HumiditySensor(jsonObject, "Bench2");
+                        mBench2 = new HumiditySensor(jsonObject, "Bench 2");
                         mSimpleSensorList.add(mBench2);
                     }
 
@@ -169,7 +169,7 @@ public class ContentManager {
                     // Loop through the array elements
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
-                        mBench3 = new SimpleSensor(jsonObject, "Bench3");
+                        mBench3 = new SimpleSensor(jsonObject, "Bench 3");
                         mSimpleSensorList.add(mBench3);
                     }
                     numberOfRequestsToMake--;
@@ -209,7 +209,7 @@ public class ContentManager {
                     // Loop through the array elements
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
-                        mStove1 = new SimpleSensor(jsonObject, "Stove1");
+                        mStove1 = new SimpleSensor(jsonObject, "Stove 1");
                         mSimpleSensorList.add(mStove1);
 
                     }
@@ -250,7 +250,7 @@ public class ContentManager {
                     // Loop through the array elements
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
-                        mStove2 = new SimpleSensor(jsonObject, "Stove2");
+                        mStove2 = new SimpleSensor(jsonObject, "Stove 2");
                         mSimpleSensorList.add(mStove2);
                     }
                     numberOfRequestsToMake--;
@@ -290,7 +290,7 @@ public class ContentManager {
                     // Loop through the array elements
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
-                        mCeiling1 = new HumiditySensor(jsonObject, "Ceiling1");
+                        mCeiling1 = new HumiditySensor(jsonObject, "Ceiling 1");
                         mSimpleSensorList.add(mCeiling1);
                     }
                     numberOfRequestsToMake--;
@@ -330,7 +330,7 @@ public class ContentManager {
                     // Loop through the array elements
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
-                        mCeiling2 = new HumiditySensor(jsonObject, "Ceiling2");
+                        mCeiling2 = new HumiditySensor(jsonObject, "Ceiling 2");
                         mSimpleSensorList.add(mCeiling2);
 
                     }
@@ -371,7 +371,7 @@ public class ContentManager {
                     // Loop through the array elements
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
-                        mFloor1 = new HumiditySensor(jsonObject, "Floor1");
+                        mFloor1 = new HumiditySensor(jsonObject, "Floor 1");
                         mSimpleSensorList.add(mFloor1);
                         System.out.println("LAST ADDED");
 
@@ -414,7 +414,7 @@ public class ContentManager {
                     // Loop through the array elements
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
-                        mDoorway1 = new HumiditySensor(jsonObject, "Doorway1");
+                        mDoorway1 = new HumiditySensor(jsonObject, "Doorway 1");
                         mSimpleSensorList.add(mDoorway1);
 
                     }
@@ -438,7 +438,6 @@ public class ContentManager {
             @Override
             public void onErrorResponse(VolleyError error) {
                 System.out.println("VOLLEY ERROR: " + error);
-                Toast.makeText(mContext, "Sorry, internet error", Toast.LENGTH_SHORT).show();
                 mDataListener.notifyNotRetrieved();
             }
         });
@@ -487,7 +486,7 @@ public class ContentManager {
         return averageTemperature;
     }
 
-    public int getAverageHumidity() {
+    public double getAverageHumidity() {
         return averageHumidity;
     }
 
@@ -495,7 +494,7 @@ public class ContentManager {
         this.averageTemperature = averageTemperature;
     }
 
-    public void setAverageHumidity(int averageHumidity) {
+    public void setAverageHumidity(double averageHumidity) {
         this.averageHumidity = averageHumidity;
     }
 

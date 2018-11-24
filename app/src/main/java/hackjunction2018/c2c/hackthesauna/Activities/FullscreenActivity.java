@@ -2,16 +2,19 @@ package hackjunction2018.c2c.hackthesauna.Activities;
 
 import android.content.Intent;
 import android.os.Handler;
-import android.os.Message;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
+import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.NoSuchElementException;
 
 import hackjunction2018.c2c.hackthesauna.ContentManager;
@@ -28,6 +31,8 @@ import in.unicodelabs.kdgaugeview.KdGaugeView;
 public class FullscreenActivity extends AppCompatActivity implements ContentManager.DataListener, View.OnClickListener {
     private LinearLayout root;
     private Button getInButton, getOutButton;
+    private TextView moistureTxtView, lowestTempTxtView, highestTempTxtView,
+            timeTxtView, dateTwtView, amtxtView;
     private ContentManager contentManager;
 
     KdGaugeView gaugeTemperatureSauna;
@@ -52,14 +57,19 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
 
         root = findViewById(R.id.root);
         gaugeTemperatureSauna = findViewById(R.id.speedMeter);
+        moistureTxtView = findViewById(R.id.moisture_text);
+        highestTempTxtView = findViewById(R.id.high_temp_text);
+        lowestTempTxtView = findViewById(R.id.low_temp_text);
+        dateTwtView = findViewById(R.id.date_text);
+        timeTxtView = findViewById(R.id.time_text);
+        amtxtView = findViewById(R.id.am_text);
         getInButton = findViewById(R.id.get_in_button);
         getOutButton = findViewById(R.id.get_out_button);
         getInButton.setOnClickListener(this);
         getOutButton.setOnClickListener(this);
 
+        updateDateTime();
         contentManager = ContentManager.getInstance(this, this);
-
-        gaugeTemperatureSauna.setSpeed(80);
 
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
 
@@ -118,8 +128,12 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
         }
     }
 
+    /**
+     * Callbacks method to be notified from the ContentManager when the data is retrieved
+     */
     @Override
     public void notifyRetrieved() {
+        updateDateTime();
         double sumTemperature = 0;
         double sumHumdity = 0;
         int countHumditySensor = 0;
@@ -132,23 +146,33 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
         }
 
         this.contentManager.setAverageTemperature((int) (sumTemperature / (this.contentManager.getmSimpleSensorList().size())));
-        this.contentManager.setAverageHumidity((int) (sumHumdity / countHumditySensor));
+        this.contentManager.setAverageHumidity((sumHumdity / countHumditySensor));
         System.out.println(this.contentManager.getAverageHumidity());
         System.out.println(this.contentManager.getAverageTemperature());
 
         try {
             SimpleSensor lowestTemperatureSensor = this.contentManager.getmSimpleSensorList()
                     .stream()
+                    .filter(sensor -> sensor.getName().startsWith("Bench"))
                     .min(Comparator.comparing(SimpleSensor::getmTemperature))
                     .orElseThrow(NoSuchElementException::new);
             SimpleSensor highestTemperatureSensor = this.contentManager.getmSimpleSensorList()
                     .stream()
+                    .filter(sensor -> sensor.getName().startsWith("Bench"))
                     .max(Comparator.comparing(SimpleSensor::getmTemperature))
                     .orElseThrow(NoSuchElementException::new);
             this.contentManager.setLowestTemperatureSensor(lowestTemperatureSensor);
             this.contentManager.setHighestTemperatureSensor(highestTemperatureSensor);
             System.out.println(this.contentManager.getLowestTemperatureSensor());
             System.out.println(this.contentManager.getHighestTemperatureSensor());
+
+            //UPDATE UI
+            gaugeTemperatureSauna.setSpeed(this.contentManager.getAverageTemperature());
+            moistureTxtView.setText(Double.toString(this.contentManager.getAverageHumidity()) + "%");
+            lowestTempTxtView.setText(this.contentManager.getLowestTemperatureSensor().getName() + " - " + Double.toString(this.contentManager.getLowestTemperatureSensor().getmTemperature()) + "°C");
+            highestTempTxtView.setText(this.contentManager.getHighestTemperatureSensor().getName() + " - " + Double.toString(this.contentManager.getHighestTemperatureSensor().getmTemperature()) + "°C");
+
+
         } catch (Throwable throwable) {
             System.out.println(throwable);
             throwable.printStackTrace();
@@ -156,15 +180,34 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
 
     }
 
+    /**
+     * Callbacks method to be notified from the ContentManager when the data couldn't be retrieved.
+     */
     @Override
     public void notifyNotRetrieved() {
-        Snackbar snackbar = Snackbar.make(root, "Welcome to AndroidHive", Snackbar.LENGTH_LONG);
+        Snackbar snackbar = Snackbar.make(root, "Sorry, a network error occured", Snackbar.LENGTH_LONG);
         snackbar.show();
     }
 
     @Override
     public void onBackPressed() {
         overridePendingTransition(R.anim.slide_out, R.anim.slide_in);
+    }
+
+    /**
+     * Method to update and display current time
+     */
+    private void updateDateTime() {
+        Date currentDate = Calendar.getInstance().getTime();
+        SimpleDateFormat timeFormat = new SimpleDateFormat("EEE, MMM d");
+        String dateString = timeFormat.format(currentDate);
+        dateTwtView.setText(dateString);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("h:mm");
+        String timeString = dateFormat.format(currentDate);
+        timeTxtView.setText(timeString);
+        SimpleDateFormat amFormat = new SimpleDateFormat("a");
+        String amString = amFormat.format(currentDate);
+        amtxtView.setText(amString);
     }
 
 }
