@@ -23,7 +23,9 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_weight="1"
-            android:background="@color/colorAccent">
+            android:background="@color/colorAccent"
+            android:layout_gravity="center"
+            android:gravity="center">
 
             <ImageView
                 android:id="@+id/temperature_image"
@@ -47,17 +49,25 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/time_text"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:textAlignment="center"
+                android:text="16:40"/>
 
             <TextView
                 android:id="@+id/date_text"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:text="Wednesday 15 November"/>
 
         </LinearLayout>
 
@@ -66,17 +76,25 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:gravity="center">
 
             <ImageView
                 android:id="@+id/moisture_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_launcher_background"/>
 
             <TextView
                 android:id="@+id/moisture_text"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="70sp"
+                android:textAlignment="center"
+                android:text="9°C"/>
+
         </LinearLayout>
 
     </LinearLayout>
