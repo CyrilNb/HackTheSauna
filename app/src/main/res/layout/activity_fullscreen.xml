@@ -48,9 +48,10 @@
                     app:dialSpeedAlertColor="@color/colorRed1"
                     app:dialSpeedColor="@color/colorGreen1"
                     app:maxSpeed="190"
+                    app:animationTime="1500"
                     app:speedDialRingInnerPadding="15dp"
                     app:speedDialRingWidth="20dp"
-                    app:speed_limit="190"
+                    app:speed_limit="100"
                     app:unitOfMeasurement="°C"
                     app:unitOfMeasurementTextSize="40dp" />
 

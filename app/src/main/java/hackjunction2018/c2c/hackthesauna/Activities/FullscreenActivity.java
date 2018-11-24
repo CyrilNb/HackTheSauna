@@ -152,8 +152,8 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
             //UPDATE UI
             gaugeTemperatureSauna.setSpeed(this.contentManager.getAverageTemperature());
             moistureTxtView.setText(Double.toString(this.contentManager.getAverageHumidity()) + "%");
-            lowestTempTxtView.setText(this.contentManager.getLowestTemperatureSensor().getName() + " - " + Double.toString(this.contentManager.getLowestTemperatureSensor().getmTemperature()) + "°C");
-            highestTempTxtView.setText(this.contentManager.getHighestTemperatureSensor().getName() + " - " + Double.toString(this.contentManager.getHighestTemperatureSensor().getmTemperature()) + "°C");
+            lowestTempTxtView.setText(this.contentManager.getLowestTemperatureSensor().getName() + " | " + Double.toString(this.contentManager.getLowestTemperatureSensor().getmTemperature()) + "°C");
+            highestTempTxtView.setText(this.contentManager.getHighestTemperatureSensor().getName() + " | " + Double.toString(this.contentManager.getHighestTemperatureSensor().getmTemperature()) + "°C");
 
 
         } catch (Throwable throwable) {
