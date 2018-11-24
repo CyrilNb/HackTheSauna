@@ -1,4 +1,4 @@
-package hackjunction2018.c2c.hackthesauna.Activities;
+package hackjunction2018.c2c.hackthesauna;
 
 import android.content.Context;
 import android.widget.Toast;
