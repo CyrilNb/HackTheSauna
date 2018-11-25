@@ -17,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Comparator;
@@ -96,6 +97,7 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
         initialize();
     }
 
+
     @Override
     public void onClick(View view) {
         Bundle args = new Bundle();
@@ -154,6 +156,7 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
         this.contentManager.setAverageHumidity((sumHumidity / countHumiditySensor));
         this.contentManager.setAverageCarbonDioxideEmission((sumCarbon / countCarbonSensor));
         this.contentManager.setAverageEnthalpy((sumEnthalpy / countEthalpySensor));
+
         System.out.println("C: " + this.contentManager.getAverageCarbonDioxideEmission());
         System.out.println("E: " + this.contentManager.getAverageEnthalpy());
         //System.out.println(this.contentManager.getAverageHumidity());
@@ -177,7 +180,9 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
 
             //UPDATE UI
             gaugeTemperatureSauna.setSpeed(this.contentManager.getAverageTemperature());
-            moistureTxtView.setText(Double.toString(this.contentManager.getAverageHumidity()) + "%");
+            DecimalFormat percentageFormat = new DecimalFormat("00.0");
+            String roundedAverageHumidity = percentageFormat.format(this.contentManager.getAverageHumidity());
+            moistureTxtView.setText(roundedAverageHumidity + " %");
             lowestTempTxtView.setText(this.contentManager.getLowestTemperatureSensor().getName() + " | " + Double.toString(this.contentManager.getLowestTemperatureSensor().getmTemperature()) + "°C");
             highestTempTxtView.setText(this.contentManager.getHighestTemperatureSensor().getName() + " | " + Double.toString(this.contentManager.getHighestTemperatureSensor().getmTemperature()) + "°C");
 
@@ -203,7 +208,6 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
      * Method to update and display current time
      */
     private void updateDateTime() {
-
         Date currentDate = Calendar.getInstance().getTime();
         SimpleDateFormat timeFormat = new SimpleDateFormat("EEE, MMM d");
         timeFormat.setTimeZone(TimeZone.getTimeZone("GMT+2"));
@@ -233,9 +237,9 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
             @Override
             public void run() {
                 contentManager.fetchAllData();
-                handler.postDelayed(this, 3000);
+                handler.postDelayed(this, 2000);
             }
-        }, 3000);
+        }, 2000);
     }
 
     @Override

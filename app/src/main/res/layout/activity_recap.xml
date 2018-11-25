@@ -11,101 +11,50 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:background="@color/colorPrimaryDark"
-        android:weightSum="4">
+        android:orientation="vertical"
+        android:weightSum="3">
 
-        <android.support.v7.widget.CardView
-            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:id="@+id/card_view_timer"
-            android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            card_view:cardCornerRadius="4dp"
+            android:layout_gravity="center"
             android:layout_margin="15dp"
-            card_view:cardPreventCornerOverlap="false"
             android:backgroundTint="@color/colorPrimary"
-            android:padding="10dp">
+            android:color="@color/colorAccent"
+            android:padding="10dp"
+            card_view:cardCornerRadius="4dp"
+            card_view:cardPreventCornerOverlap="false">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:text="Your session recap"
-                android:textSize="50sp"
                 android:textAlignment="center"
-                android:textColor="@color/white"
-                android:padding="10dp"/>
+                android:textColor="@color/colorAccent"
+                android:textSize="50sp" />
 
         </android.support.v7.widget.CardView>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:weightSum="3"
+            android:layout_height="0dp"
             android:layout_weight="3"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="3">
 
-            <android.support.v7.widget.CardView
-                xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/card_view_time"
-                android:layout_gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                card_view:cardCornerRadius="4dp"
-                android:layout_weight="1"
-                android:layout_margin="15dp"
-                card_view:cardPreventCornerOverlap="false"
-                android:background="@color/white">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:weightSum="3">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical|right"
-                        android:layout_weight="1">
-
-                        <ImageView
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
-                            android:src="@drawable/baseline_av_timer_white_48"
-                            android:layout_marginRight="30dp"
-                            android:tint="@color/colorPrimary"
-                            android:layout_gravity="right"
-                            />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="200dp"
-                        android:layout_height="wrap_content"
-                        android:text="29 minutes"
-                        android:textSize="90sp"
-                        android:textColor="@color/colorPrimary"
-                        android:gravity="center_vertical|left"
-                        android:layout_weight="2" />
-
-                </LinearLayout>
-
-
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/card_view_temp"
-                android:layout_gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                card_view:cardCornerRadius="4dp"
-                android:layout_weight="1"
+                android:layout_gravity="center"
                 android:layout_margin="15dp"
-                card_view:cardPreventCornerOverlap="false"
-                android:background="@color/white">
+                android:layout_weight="1"
+                android:background="@color/white"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardPreventCornerOverlap="false">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -116,46 +65,43 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical|right"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|right">
 
                         <ImageView
                             android:layout_width="150dp"
                             android:layout_height="150dp"
-                            android:src="@drawable/ic_thermometer_white_48dp"
-                            android:layout_marginRight="30dp"
-                            android:tint="@color/colorPrimary"
                             android:layout_gravity="right"
-                            />
+                            android:layout_marginRight="30dp"
+                            android:src="@drawable/ic_thermometer_white_48dp"
+                            android:tint="@color/colorPrimary" />
 
                     </LinearLayout>
 
                     <TextView
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:text="67°C"
-                        android:textSize="90sp"
-                        android:textColor="@color/colorPrimary"
+                        android:layout_weight="2"
                         android:gravity="center_vertical|left"
-                        android:layout_weight="2" />
+                        android:text="67°C"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="90sp" />
 
                 </LinearLayout>
-
 
 
             </android.support.v7.widget.CardView>
 
-            <android.support.v7.widget.CardView
-                xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/card_view_calories"
-                android:layout_gravity="center"
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                card_view:cardCornerRadius="4dp"
-                android:layout_weight="1"
+                android:layout_gravity="center"
                 android:layout_margin="15dp"
-                card_view:cardPreventCornerOverlap="false"
-                android:background="@color/white">
+                android:layout_weight="1"
+                android:background="@color/white"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardPreventCornerOverlap="false">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -166,31 +112,77 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical|right"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|right">
 
                         <ImageView
                             android:layout_width="150dp"
                             android:layout_height="150dp"
-                            android:src="@drawable/ic_fire_white_48dp"
-                            android:layout_marginRight="30dp"
-                            android:tint="@color/colorPrimary"
                             android:layout_gravity="right"
-                            />
+                            android:layout_marginRight="30dp"
+                            android:src="@drawable/baseline_av_timer_white_48"
+                            android:tint="@color/colorPrimary" />
 
                     </LinearLayout>
 
                     <TextView
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:text="278 calories"
-                        android:textSize="90sp"
-                        android:textColor="@color/colorPrimary"
+                        android:layout_weight="2"
                         android:gravity="center_vertical|left"
-                        android:layout_weight="2" />
+                        android:text="29 minutes"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="90sp" />
 
                 </LinearLayout>
 
+
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view_calories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardPreventCornerOverlap="false">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:weightSum="3">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|right">
+
+                        <ImageView
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_gravity="right"
+                            android:layout_marginRight="30dp"
+                            android:src="@drawable/ic_fire_white_48dp"
+                            android:tint="@color/colorPrimary" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center_vertical|left"
+                        android:text="278 calories"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="90sp" />
+
+                </LinearLayout>
 
 
             </android.support.v7.widget.CardView>

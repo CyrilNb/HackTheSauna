@@ -106,6 +106,7 @@
                 </LinearLayout>
 
                 <Button
+                    android:id="@+id/button_save"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_weight="1"
