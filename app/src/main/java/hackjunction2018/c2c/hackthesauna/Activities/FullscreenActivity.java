@@ -16,15 +16,15 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.NoSuchElementException;
+import java.util.TimeZone;
 
 import hackjunction2018.c2c.hackthesauna.ContentManager;
-import hackjunction2018.c2c.hackthesauna.Model.HumiditySensor;
+import hackjunction2018.c2c.hackthesauna.Model.ComplexSensor;
 import hackjunction2018.c2c.hackthesauna.Model.SimpleSensor;
 import hackjunction2018.c2c.hackthesauna.R;
 import in.unicodelabs.kdgaugeview.KdGaugeView;
@@ -82,8 +82,7 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
 
 
     @Override
-    public void onResume()
-    {  // After a pause OR at startup
+    public void onResume() {  // After a pause OR at startup
         super.onResume();
         //Refresh the stuff here
         initialize();
@@ -129,19 +128,33 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
     public void notifyRetrieved() {
         updateDateTime();
         double sumTemperature = 0;
-        double sumHumdity = 0;
-        int countHumditySensor = 0;
+        double sumHumidity = 0;
+        double sumCarbon = 0;
+        int sumEnthalpy = 0;
+        int countHumiditySensor = 0;
+        int countEthalpySensor = 0;
+        int countCarbonSensor = 0;
         for (SimpleSensor simpleSensor : this.contentManager.getmSimpleSensorList()) {
             sumTemperature += simpleSensor.getmTemperature();
+            if (simpleSensor.getmCarbon() != -1) {
+                sumCarbon += simpleSensor.getmCarbon();
+                countCarbonSensor++;
+            }
             System.out.println(simpleSensor.getmTemperature());
-            if (simpleSensor instanceof HumiditySensor) {
-                sumHumdity += ((HumiditySensor) simpleSensor).getmRelativeHumidity();
-                ++countHumditySensor;
+            if (simpleSensor instanceof ComplexSensor) {
+                sumEnthalpy += ((ComplexSensor) simpleSensor).getmEnthalpy();
+                sumHumidity += ((ComplexSensor) simpleSensor).getmRelativeHumidity();
+                ++countHumiditySensor;
+                ++countEthalpySensor;
             }
         }
 
         this.contentManager.setAverageTemperature((int) (sumTemperature / (this.contentManager.getmSimpleSensorList().size())));
-        this.contentManager.setAverageHumidity((sumHumdity / countHumditySensor));
+        this.contentManager.setAverageHumidity((sumHumidity / countHumiditySensor));
+        this.contentManager.setAverageCarbonDioxideEmission((sumCarbon / countCarbonSensor));
+        this.contentManager.setAverageEnthalpy((sumEnthalpy / countEthalpySensor));
+        System.out.println("C: "+this.contentManager.getAverageCarbonDioxideEmission());
+        System.out.println("E: "+this.contentManager.getAverageEnthalpy());
         //System.out.println(this.contentManager.getAverageHumidity());
         //System.out.println(this.contentManager.getAverageTemperature());
 
@@ -189,14 +202,18 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
      * Method to update and display current time
      */
     private void updateDateTime() {
+
         Date currentDate = Calendar.getInstance().getTime();
         SimpleDateFormat timeFormat = new SimpleDateFormat("EEE, MMM d");
+        timeFormat.setTimeZone(TimeZone.getTimeZone("GMT+2"));
         String dateString = timeFormat.format(currentDate);
         dateTwtView.setText(dateString);
         SimpleDateFormat dateFormat = new SimpleDateFormat("h:mm");
+        dateFormat.setTimeZone(TimeZone.getTimeZone("GMT+2"));
         String timeString = dateFormat.format(currentDate);
         timeTxtView.setText(timeString);
         SimpleDateFormat amFormat = new SimpleDateFormat("a");
+        amFormat.setTimeZone(TimeZone.getTimeZone("GMT+2"));
         String amString = amFormat.format(currentDate);
         amtxtView.setText(amString);
     }
@@ -204,7 +221,7 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
     /**
      * Methods which initializes the UI with data
      */
-    private void initialize(){
+    private void initialize() {
         //INIT DATA
         updateDateTime();
         contentManager = ContentManager.getInstance(this, this);
@@ -224,7 +241,7 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (requestCode == 1) {
-            if(resultCode == Activity.RESULT_OK){
+            if (resultCode == Activity.RESULT_OK) {
                 // launch next activity depending of the result
                 /*String result=data.getStringExtra("type");
                 if (result.equals("in")) {
@@ -257,12 +274,17 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                //TODO Close button action
+                View decorView = getWindow().getDecorView();
+                decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
             }
         });
 
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
         dialog.show();
     }
 }

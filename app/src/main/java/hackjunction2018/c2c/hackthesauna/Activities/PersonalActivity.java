@@ -1,17 +1,16 @@
 package hackjunction2018.c2c.hackthesauna.Activities;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.codetroopers.betterpickers.OnDialogDismissListener;
 import com.codetroopers.betterpickers.hmspicker.HmsPickerBuilder;
 import com.codetroopers.betterpickers.hmspicker.HmsPickerDialogFragment;
 
@@ -22,7 +21,7 @@ import hackjunction2018.c2c.hackthesauna.Model.Session;
 import hackjunction2018.c2c.hackthesauna.R;
 import hackjunction2018.c2c.hackthesauna.SessionAdapter;
 
-public class PersonalActivity extends AppCompatActivity implements HmsPickerDialogFragment.HmsPickerDialogHandlerV2{
+public class PersonalActivity extends AppCompatActivity implements HmsPickerDialogFragment.HmsPickerDialogHandlerV2 {
 
     private LinearLayout linearLayoutRecapTimer;
     private Button mButtonTimer;
@@ -78,7 +77,7 @@ public class PersonalActivity extends AppCompatActivity implements HmsPickerDial
             int randomTemp = (int )(Math.random() * 100 + 1);
             int randomMin = (int )(Math.random() * 59 + 1);
             int randomCalories = (int )(Math.random() * 300 + 1);
-            lastSessions.add(new Session(i+1 + " November 2018", String.valueOf(randomTemp), String.valueOf(randomMin), String.valueOf(randomCalories)));
+            lastSessions.add(new Session(i+1 + " November 2018", String.valueOf(randomTemp)+" °C", String.valueOf(randomMin)+" min", String.valueOf(randomCalories)+" cal"));
         }
 
         mAdapter = new SessionAdapter(lastSessions);
@@ -128,6 +127,13 @@ public class PersonalActivity extends AppCompatActivity implements HmsPickerDial
         txtViewMinutes.setText(Integer.toString(minutes));
         txtViewHours.setText(Integer.toString(hours));
 
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
     }
 
     public int getHours() {
@@ -141,4 +147,5 @@ public class PersonalActivity extends AppCompatActivity implements HmsPickerDial
     public int getSeconds() {
         return seconds;
     }
+
 }
