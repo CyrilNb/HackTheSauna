@@ -22,12 +22,12 @@ public class RecapActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 
-        final Handler handler = new Handler();
+        /*final Handler handler = new Handler();
         handler.postDelayed(() -> {
             Intent mainIntent = new Intent(getApplicationContext(), FullscreenActivity.class);
             startActivity(mainIntent);
             finish();
-        }, 5000);
+        }, 5000);*/
     }
 
     @Override

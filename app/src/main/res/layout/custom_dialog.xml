@@ -13,7 +13,7 @@
         <ImageView
             android:layout_width="1100px"
             android:layout_height="1100px"
-            android:src="@drawable/sauna_map" />
+            android:src="@drawable/sauna_map_v2" />
 
     </LinearLayout>
 

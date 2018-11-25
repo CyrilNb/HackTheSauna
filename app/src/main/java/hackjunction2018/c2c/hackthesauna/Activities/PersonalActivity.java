@@ -66,9 +66,9 @@ public class PersonalActivity extends AppCompatActivity implements HmsPickerDial
         });
 
         mButtonSave.setOnClickListener(view -> {
-            Intent mainIntent = new Intent(getApplicationContext(), FullscreenActivity.class);
+            /*Intent mainIntent = new Intent(getApplicationContext(), FullscreenActivity.class);
             startActivity(mainIntent);
-            finish();
+            finish();*/
         });
 
         mRecyclerView = findViewById(R.id.last_sessions_recycler_view);

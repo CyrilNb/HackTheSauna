@@ -181,7 +181,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:backgroundTint="@color/colorGreen1"
+            android:backgroundTint="@color/blue"
             card_view:cardCornerRadius="10dp"
             card_view:cardPreventCornerOverlap="false">
 
@@ -190,7 +190,7 @@
                 android:id="@+id/enthalpy_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="EASY PEASY!"
+                android:text="Brrrr... It's freezing in there!"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:padding="10dp"
@@ -375,7 +375,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@color/colorRed1"
-                android:text="GET OUT"
+                android:text="I'm done "
                 android:textColor="@color/white"
                 android:textSize="55sp" />
         </LinearLayout>
