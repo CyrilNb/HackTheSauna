@@ -1,13 +1,18 @@
 package hackjunction2018.c2c.hackthesauna.Activities;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -35,6 +40,8 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
     private TextView moistureTxtView, lowestTempTxtView, highestTempTxtView,
             timeTxtView, dateTwtView, amtxtView;
     private ContentManager contentManager;
+    Dialog dialog;
+    private FloatingActionButton fabMap;
 
     KdGaugeView gaugeTemperatureSauna;
 
@@ -66,6 +73,8 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
         amtxtView = findViewById(R.id.am_text);
         getInButton = findViewById(R.id.get_in_button);
         getOutButton = findViewById(R.id.get_out_button);
+        fabMap = findViewById(R.id.fabMap);
+        fabMap.setOnClickListener(this);
         getInButton.setOnClickListener(this);
         getOutButton.setOnClickListener(this);
 
@@ -105,6 +114,9 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
                 startActivityForResult(scanCardIntent2, 1);
                 //finish();
                 overridePendingTransition(R.anim.activity_enter, R.anim.activity_exit);
+                break;
+            case R.id.fabMap:
+                showDialog();
                 break;
         }
     }
@@ -246,5 +258,33 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
                 // do nothing, it's from a button back pressed.
             }
         }
+    }
+
+
+    private void showDialog() {
+        // custom dialog
+        dialog = new Dialog(this);
+        dialog.setContentView(R.layout.custom_dialog);
+
+        // set the custom dialog components - text, image and button
+        ImageButton close = dialog.findViewById(R.id.btnClose);
+
+        // Close Button
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                View decorView = getWindow().getDecorView();
+                decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+            }
+        });
+
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
     }
 }

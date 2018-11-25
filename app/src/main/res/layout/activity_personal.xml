@@ -28,13 +28,15 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:weightSum="7">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/colorPrimary"
                     android:text="TIMER"
+                    android:layout_weight="1"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="60sp" />
@@ -43,55 +45,70 @@
                     android:id="@+id/button_select_timer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
                     android:background="@color/colorPrimary"
                     android:text="Select a duration"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     android:textColor="@color/white"
+                    android:padding="20dp"
+                    android:layout_weight="0.5"
                     android:textSize="40dp" />
 
                 <LinearLayout
                     android:id="@+id/linearTimerRecap"
                     android:layout_marginTop="100dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_horizontal"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:orientation="horizontal"
-                    android:visibility="gone">
+                    android:background="@color/colorPrimary"
+                    android:layout_weight="4"
+                    >
 
                     <TextView
                         android:id="@+id/txtViewHours"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="00"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="60sp" />
+                        android:textColor="@color/colorAccent"
+                        android:textSize="80sp" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=" : "
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="30sp" />
+                        android:textColor="@color/colorAccent"
+                        android:textSize="60sp" />
                     <TextView
                         android:id="@+id/txtViewMinutes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="60sp" />
+                        android:text="00"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="80sp" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=" : "
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="30sp" />
+                        android:textColor="@color/colorAccent"
+                        android:textSize="80sp" />
                     <TextView
                         android:id="@+id/txtViewSeconds"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="60sp" />
+                        android:text="00"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="90sp" />
                 </LinearLayout>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@color/colorGreen1"
+                    android:textColor="@color/white"
+                    android:textSize="35dp"
+                    android:layout_weight="1"
+                    android:text="Save and Quit"/>
 
             </LinearLayout>
 
