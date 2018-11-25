@@ -11,6 +11,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -153,8 +154,8 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
         this.contentManager.setAverageHumidity((sumHumidity / countHumiditySensor));
         this.contentManager.setAverageCarbonDioxideEmission((sumCarbon / countCarbonSensor));
         this.contentManager.setAverageEnthalpy((sumEnthalpy / countEthalpySensor));
-        System.out.println("C: "+this.contentManager.getAverageCarbonDioxideEmission());
-        System.out.println("E: "+this.contentManager.getAverageEnthalpy());
+        System.out.println("C: " + this.contentManager.getAverageCarbonDioxideEmission());
+        System.out.println("E: " + this.contentManager.getAverageEnthalpy());
         //System.out.println(this.contentManager.getAverageHumidity());
         //System.out.println(this.contentManager.getAverageTemperature());
 
@@ -285,6 +286,16 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
         });
 
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        // Set the dialog to not focusable.
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+
+
+        // Show the dialog with NavBar hidden.
         dialog.show();
+
+        // Set the dialog to focusable again.
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+
     }
 }

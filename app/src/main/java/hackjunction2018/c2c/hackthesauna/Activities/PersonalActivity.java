@@ -1,6 +1,6 @@
 package hackjunction2018.c2c.hackthesauna.Activities;
 
-import android.content.DialogInterface;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.codetroopers.betterpickers.OnDialogDismissListener;
 import com.codetroopers.betterpickers.hmspicker.HmsPickerBuilder;
 import com.codetroopers.betterpickers.hmspicker.HmsPickerDialogFragment;
 
@@ -52,11 +51,18 @@ public class PersonalActivity extends AppCompatActivity implements HmsPickerDial
         mButtonTimer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                View decorView = getWindow().getDecorView();
+                decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
                 HmsPickerBuilder hpb = new HmsPickerBuilder()
                         .setFragmentManager(getSupportFragmentManager())
                         .setStyleResId(R.style.BetterPickersDialogFragment);
                 hpb.show();
-                mButtonTimer.setVisibility(View.GONE);
+                mButtonTimer.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -73,11 +79,11 @@ public class PersonalActivity extends AppCompatActivity implements HmsPickerDial
         // specify an adapter (see also next example)
         List<Session> lastSessions = new ArrayList<>();
 
-        for(int i=0; i < 10; i++){
-            int randomTemp = (int )(Math.random() * 100 + 1);
-            int randomMin = (int )(Math.random() * 59 + 1);
-            int randomCalories = (int )(Math.random() * 300 + 1);
-            lastSessions.add(new Session(i+1 + " November 2018", String.valueOf(randomTemp)+" °C", String.valueOf(randomMin)+" min", String.valueOf(randomCalories)+" cal"));
+        for (int i = 0; i < 10; i++) {
+            int randomTemp = (int) (Math.random() * 100 + 1);
+            int randomMin = (int) (Math.random() * 59 + 1);
+            int randomCalories = (int) (Math.random() * 300 + 1);
+            lastSessions.add(new Session(i + 1 + " November 2018", String.valueOf(randomTemp) + " °C", String.valueOf(randomMin) + " min", String.valueOf(randomCalories) + " cal"));
         }
 
         mAdapter = new SessionAdapter(lastSessions);
@@ -85,6 +91,7 @@ public class PersonalActivity extends AppCompatActivity implements HmsPickerDial
 
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
     }
+
 
     @Override
     protected void onResume() {
