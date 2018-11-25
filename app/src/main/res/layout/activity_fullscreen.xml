@@ -95,7 +95,7 @@
                     android:text="-"
                     android:textAlignment="center"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="40sp" />
+                    android:textSize="60sp" />
 
 
             </LinearLayout>
@@ -314,10 +314,10 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:gravity="center"
-                    android:text="8/10"
+                    android:text="8 / 10"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="70sp"
+                    android:textSize="50sp"
                     android:textStyle="bold" />
 
                 <ImageView
