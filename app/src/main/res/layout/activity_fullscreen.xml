@@ -30,7 +30,9 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
-            card_view:cardCornerRadius="4dp">
+            android:backgroundTint=""
+            card_view:cardCornerRadius="10dp"
+            >
 
             <LinearLayout
                 android:id="@+id/temperature_sauna"
@@ -60,60 +62,6 @@
 
         </android.support.v7.widget.CardView>
 
-
-
-        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/card_view"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
-            card_view:cardCornerRadius="4dp">
-
-            <LinearLayout
-                android:id="@+id/date_sauna"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/time_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="16:40"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="120sp" />
-
-                <TextView
-                    android:id="@+id/am_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="am"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="25sp" />
-
-                <TextView
-                    android:id="@+id/date_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Wednesday 15th November"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="50sp" />
-
-            </LinearLayout>
-
-
-        </android.support.v7.widget.CardView>
-
         <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:id="@+id/card_view_3"
             android:layout_width="wrap_content"
@@ -122,7 +70,8 @@
             android:layout_margin="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
-            card_view:cardCornerRadius="4dp">
+            card_view:cardCornerRadius="10dp"
+            >
 
             <LinearLayout
                 android:id="@+id/moisture_sauna"
@@ -146,6 +95,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:textAlignment="center"
+                    android:text="-"
                     android:textColor="@color/colorPrimary"
                     android:textSize="70sp" />
 
@@ -153,6 +103,68 @@
 
 
         </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            card_view:cardCornerRadius="10dp">
+
+            <LinearLayout
+                android:id="@+id/date_sauna"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/time_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="16:40"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="120sp" />
+
+                    <TextView
+                        android:id="@+id/am_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:text="am"
+                        android:textAlignment="center"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="35sp" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/date_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Wednesday 15th November"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="35sp" />
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+
 
     </LinearLayout>
 
@@ -174,7 +186,7 @@
             android:layout_margin="5dp"
             android:layout_weight="2"
             android:background="@color/white"
-            card_view:cardCornerRadius="4dp"
+            card_view:cardCornerRadius="10dp"
             card_view:cardPreventCornerOverlap="false">
 
             <LinearLayout
@@ -213,8 +225,8 @@
             android:layout_height="100dp"
             android:layout_gravity="center_vertical"
             android:layout_margin="10dp"
-            android:padding="10dp"
-            android:src="@drawable/ic_eye_white_18dp"
+            android:scaleType="center"
+            android:src="@drawable/ic_eye_white_48dp"
             android:tint="@color/colorPrimaryDark"
             app:backgroundTint="@color/colorAccent" />
 
@@ -226,7 +238,7 @@
             android:layout_margin="5dp"
             android:layout_weight="2"
             android:background="@color/white"
-            card_view:cardCornerRadius="4dp"
+            card_view:cardCornerRadius="10dp"
             card_view:cardPreventCornerOverlap="false">
 
             <LinearLayout
@@ -259,37 +271,6 @@
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
-        <!--
-            <android.support.v7.widget.CardView
-                xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/card_view_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@color/white"
-                card_view:cardCornerRadius="4dp"
-                card_view:cardPreventCornerOverlap="false">
-
-                <LinearLayout
-                    android:id="@+id/show_sauna"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageButton
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:adjustViewBounds="true"
-                        android:background="@color/colorPrimary"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/eye" />
-
-                </LinearLayout>
-            </android.support.v7.widget.CardView>-->
     </LinearLayout>
 
 
@@ -300,7 +281,7 @@
         android:layout_gravity="center_vertical|center"
         android:layout_weight="0"
         android:background="@color/white"
-        card_view:cardCornerRadius="4dp">
+        card_view:cardCornerRadius="10dp">
 
         <LinearLayout
             android:id="@+id/third_line_container"
@@ -326,6 +307,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:background="@color/colorPrimary"
                 android:orientation="horizontal">
 
                 <TextView
