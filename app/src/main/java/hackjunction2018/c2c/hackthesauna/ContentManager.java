@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hackjunction2018.c2c.hackthesauna.Model.SimpleSensor;
-import hackjunction2018.c2c.hackthesauna.Model.HumiditySensor;
+import hackjunction2018.c2c.hackthesauna.Model.ComplexSensor;
 
 /**
  * Created by Cyril Niobé on 24/11/2018.
@@ -27,12 +27,14 @@ public class ContentManager {
     private static final String TAG = ContentManager.class.getSimpleName();
     private static ContentManager mInstance;
     private SimpleSensor mBench1, mBench3, mStove1, mStove2;
-    private HumiditySensor mBench2, mCeiling1, mCeiling2, mFloor1, mDoorway1;
+    private ComplexSensor mBench2, mCeiling1, mCeiling2, mFloor1, mDoorway1;
     private Context mContext;
     private ContentManager.DataListener mDataListener;
     private int averageTemperature;
     private SimpleSensor lowestTemperatureSensor;
     private SimpleSensor highestTemperatureSensor;
+    private int averageEnthalpy;
+    private double averageCarbonDioxideEmission;
     private double averageHumidity;
     private RequestQueue mRequestQueue;
 
@@ -126,7 +128,7 @@ public class ContentManager {
                     // Loop through the array elements
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
-                        mBench2 = new HumiditySensor(jsonObject, "Bench 2");
+                        mBench2 = new ComplexSensor(jsonObject, "Bench 2");
                         mSimpleSensorList.add(mBench2);
                     }
 
@@ -290,7 +292,7 @@ public class ContentManager {
                     // Loop through the array elements
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
-                        mCeiling1 = new HumiditySensor(jsonObject, "Ceiling 1");
+                        mCeiling1 = new ComplexSensor(jsonObject, "Ceiling 1");
                         mSimpleSensorList.add(mCeiling1);
                     }
                     numberOfRequestsToMake--;
@@ -330,7 +332,7 @@ public class ContentManager {
                     // Loop through the array elements
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
-                        mCeiling2 = new HumiditySensor(jsonObject, "Ceiling 2");
+                        mCeiling2 = new ComplexSensor(jsonObject, "Ceiling 2");
                         mSimpleSensorList.add(mCeiling2);
 
                     }
@@ -371,7 +373,7 @@ public class ContentManager {
                     // Loop through the array elements
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
-                        mFloor1 = new HumiditySensor(jsonObject, "Floor 1");
+                        mFloor1 = new ComplexSensor(jsonObject, "Floor 1");
                         mSimpleSensorList.add(mFloor1);
                         System.out.println("LAST ADDED");
 
@@ -414,7 +416,7 @@ public class ContentManager {
                     // Loop through the array elements
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
-                        mDoorway1 = new HumiditySensor(jsonObject, "Doorway 1");
+                        mDoorway1 = new ComplexSensor(jsonObject, "Doorway 1");
                         mSimpleSensorList.add(mDoorway1);
 
                     }
@@ -446,40 +448,12 @@ public class ContentManager {
     }
 
 
-    public SimpleSensor getmBench1() {
-        return mBench1;
+    public int getAverageEnthalpy() {
+        return averageEnthalpy;
     }
 
-    public SimpleSensor getmBench3() {
-        return mBench3;
-    }
-
-    public HumiditySensor getmBench2() {
-        return this.mBench2;
-    }
-
-    public SimpleSensor getmStove1() {
-        return mStove1;
-    }
-
-    public SimpleSensor getmStove2() {
-        return mStove2;
-    }
-
-    public HumiditySensor getmCeiling1() {
-        return mCeiling1;
-    }
-
-    public HumiditySensor getmCeiling2() {
-        return mCeiling2;
-    }
-
-    public HumiditySensor getmFloor1() {
-        return mFloor1;
-    }
-
-    public HumiditySensor getmDoorway1() {
-        return mDoorway1;
+    public double getAverageCarbonDioxideEmission() {
+        return averageCarbonDioxideEmission;
     }
 
     public int getAverageTemperature() {
@@ -496,6 +470,14 @@ public class ContentManager {
 
     public void setAverageHumidity(double averageHumidity) {
         this.averageHumidity = averageHumidity;
+    }
+
+    public void setAverageEnthalpy(int averageEnthalpy) {
+        this.averageEnthalpy = averageEnthalpy;
+    }
+
+    public void setAverageCarbonDioxideEmission(double averageCarbonDioxideEmission) {
+        this.averageCarbonDioxideEmission = averageCarbonDioxideEmission;
     }
 
     public List<SimpleSensor> getmSimpleSensorList() {

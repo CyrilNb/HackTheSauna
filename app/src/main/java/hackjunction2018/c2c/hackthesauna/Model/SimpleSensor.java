@@ -12,11 +12,13 @@ public class SimpleSensor {
     private String name;
     private int mTimeStamp;
     private double mTemperature;
+    private int mCarbon;
 
     public static final String TIMESTAMP = "Timestamp";
     public static final String MEASUREMENTS = "Measurements";
     public static final String TEMPERATURE = "Temperature";
     public static final String VALUE = "value";
+    public static final String CARBON = "Carbon Dioxide concentration";
 
     public SimpleSensor() {
     }
@@ -25,6 +27,11 @@ public class SimpleSensor {
         this.name = name;
         this.mTimeStamp = jsonObject.optInt(TIMESTAMP);
         this.mTemperature = jsonObject.optJSONObject(MEASUREMENTS).optJSONObject(TEMPERATURE).optDouble(VALUE);
+        if (jsonObject.optJSONObject(MEASUREMENTS).optJSONObject(CARBON) != null) {
+            this.mCarbon = jsonObject.optJSONObject(MEASUREMENTS).optJSONObject(CARBON).optInt(VALUE);
+        } else {
+            this.mCarbon = -1;
+        }
     }
 
     public int getmTimeStamp() {
@@ -47,10 +54,10 @@ public class SimpleSensor {
         return name;
     }
 
-    public void updateSimpleSensor(JSONObject jsonObject) {
-        this.mTimeStamp = jsonObject.optInt(TIMESTAMP);
-        this.mTemperature = jsonObject.optJSONObject(TEMPERATURE).optDouble(VALUE);
+    public int getmCarbon() {
+        return mCarbon;
     }
+
 
     @Override
     public String toString() {
@@ -58,6 +65,7 @@ public class SimpleSensor {
                 "name='" + name + '\'' +
                 ", mTimeStamp=" + mTimeStamp +
                 ", mTemperature=" + mTemperature +
+                ", mCarbon=" + mCarbon +
                 '}';
     }
 

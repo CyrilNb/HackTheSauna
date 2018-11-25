@@ -7,54 +7,55 @@ import java.util.Objects;
 /**
  * Created by Cyril Niobé on 24/11/2018.
  */
-public class HumiditySensor extends SimpleSensor {
+public class ComplexSensor extends SimpleSensor {
 
     private double mRelativeHumidity;
+    private double mEnthalpy;
 
     public static final String TIMESTAMP = "Timestamp";
     public static final String MEASUREMENTS = "Measurements";
     public static final String TEMPERATURE = "Temperature";
     public static final String RELATIVEHUMIDITY = "Relative humidity";
     public static final String VALUE = "value";
+    public static final String ENTHALPY = "Enthalpy";
 
-    public HumiditySensor(JSONObject jsonObject, String name) {
+    public ComplexSensor(JSONObject jsonObject, String name) {
         super(jsonObject, name);
         this.mRelativeHumidity = jsonObject.optJSONObject(MEASUREMENTS).optJSONObject(RELATIVEHUMIDITY).optInt(VALUE);
+        this.mEnthalpy = jsonObject.optJSONObject(MEASUREMENTS).optJSONObject(ENTHALPY).optInt(VALUE);
     }
 
     public double getmRelativeHumidity() {
         return mRelativeHumidity;
     }
 
-    public void setmRelativeHumidity(double mRelativeHumidity) {
-        this.mRelativeHumidity = mRelativeHumidity;
+    public double getmEnthalpy() {
+        return mEnthalpy;
     }
 
-    public void updateBench2(JSONObject jsonObject) {
-        this.setmTimeStamp(jsonObject.optInt(TIMESTAMP));
-        this.setmTemperature(jsonObject.optJSONObject(TEMPERATURE).optDouble(VALUE));
-        this.mRelativeHumidity = jsonObject.optJSONObject(MEASUREMENTS).optJSONObject(RELATIVEHUMIDITY).optInt(VALUE);
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        HumiditySensor that = (HumiditySensor) o;
-        return Double.compare(that.mRelativeHumidity, mRelativeHumidity) == 0;
+        ComplexSensor that = (ComplexSensor) o;
+        return Double.compare(that.mRelativeHumidity, mRelativeHumidity) == 0 &&
+                Double.compare(that.mEnthalpy, mEnthalpy) == 0;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), mRelativeHumidity);
+
+        return Objects.hash(super.hashCode(), mRelativeHumidity, mEnthalpy);
     }
 
     @Override
     public String toString() {
-        return "HumiditySensor{" +
+        return "ComplexeSensor{" +
                 "Name=" + getName() +
-                "mTemperature="+ getmTemperature() +
+                "mEnthalpy=" + getmEnthalpy() +
+                "mTemperature=" + getmTemperature() +
                 "mRelativeHumidity=" + mRelativeHumidity +
                 '}';
     }
