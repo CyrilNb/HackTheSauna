@@ -180,6 +180,7 @@ public class FullscreenActivity extends AppCompatActivity implements ContentMana
 
             //UPDATE UI
             gaugeTemperatureSauna.setSpeed(this.contentManager.getAverageTemperature());
+            //gaugeTemperatureSauna.setSpeed(120);
             DecimalFormat percentageFormat = new DecimalFormat("00.0");
             String roundedAverageHumidity = percentageFormat.format(this.contentManager.getAverageHumidity());
             moistureTxtView.setText(roundedAverageHumidity + " %");
