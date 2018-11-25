@@ -181,7 +181,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:backgroundTint="@color/colorOrange1"
+            android:backgroundTint="@color/colorGreen1"
             card_view:cardCornerRadius="10dp"
             card_view:cardPreventCornerOverlap="false">
 
@@ -190,7 +190,7 @@
                 android:id="@+id/enthalpy_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Be careful it's pretty hot!"
+                android:text="EASY PEASY!"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:padding="10dp"
@@ -266,7 +266,7 @@
             android:scaleType="center"
             android:src="@drawable/ic_eye_white_48dp"
             android:tint="@color/colorPrimaryDark"
-            app:backgroundTint="@color/colorPrimaryLight" />
+            app:backgroundTint="@color/colorAccent" />
 
         <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:id="@+id/card_view_low_temp"

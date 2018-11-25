@@ -110,7 +110,6 @@ public class ContentManager {
             @Override
             public void onErrorResponse(VolleyError error) {
                 System.out.println("VOLLEY ERROR: " + error);
-                Toast.makeText(mContext, "Sorry, internet error", Toast.LENGTH_SHORT).show();
                 mDataListener.notifyNotRetrieved();
             }
         });
@@ -152,7 +151,6 @@ public class ContentManager {
             @Override
             public void onErrorResponse(VolleyError error) {
                 System.out.println("VOLLEY ERROR: " + error);
-                Toast.makeText(mContext, "Sorry, internet error", Toast.LENGTH_SHORT).show();
                 mDataListener.notifyNotRetrieved();
             }
         });
@@ -193,7 +191,6 @@ public class ContentManager {
             @Override
             public void onErrorResponse(VolleyError error) {
                 System.out.println("VOLLEY ERROR: " + error);
-                Toast.makeText(mContext, "Sorry, internet error", Toast.LENGTH_SHORT).show();
                 mDataListener.notifyNotRetrieved();
             }
         });
@@ -234,7 +231,6 @@ public class ContentManager {
             @Override
             public void onErrorResponse(VolleyError error) {
                 System.out.println("VOLLEY ERROR: " + error);
-                Toast.makeText(mContext, "Sorry, internet error", Toast.LENGTH_SHORT).show();
                 mDataListener.notifyNotRetrieved();
             }
         });
@@ -274,7 +270,6 @@ public class ContentManager {
             @Override
             public void onErrorResponse(VolleyError error) {
                 System.out.println("VOLLEY ERROR: " + error);
-                Toast.makeText(mContext, "Sorry, internet error", Toast.LENGTH_SHORT).show();
                 mDataListener.notifyNotRetrieved();
             }
         });
@@ -314,7 +309,6 @@ public class ContentManager {
             @Override
             public void onErrorResponse(VolleyError error) {
                 System.out.println("VOLLEY ERROR: " + error);
-                Toast.makeText(mContext, "Sorry, internet error", Toast.LENGTH_SHORT).show();
                 mDataListener.notifyNotRetrieved();
             }
         });
@@ -355,7 +349,6 @@ public class ContentManager {
             @Override
             public void onErrorResponse(VolleyError error) {
                 System.out.println("VOLLEY ERROR: " + error);
-                Toast.makeText(mContext, "Sorry, internet error", Toast.LENGTH_SHORT).show();
                 mDataListener.notifyNotRetrieved();
             }
         });
@@ -398,7 +391,6 @@ public class ContentManager {
             @Override
             public void onErrorResponse(VolleyError error) {
                 System.out.println("VOLLEY ERROR: " + error);
-                Toast.makeText(mContext, "Sorry, internet error", Toast.LENGTH_SHORT).show();
                 mDataListener.notifyNotRetrieved();
             }
         });
