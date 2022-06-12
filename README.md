@@ -26,7 +26,7 @@ In a nutshell, SaunAssistant will bring a techy touch to a really old tradition 
 ![Dashboard Control Inside](https://i.ibb.co/wLNNWK2/screen-inside-1-V2.png)
 ### Visualize the sauna and choose your favorite seat
 ![Sauna Visualization Inside](https://i.ibb.co/HPthh87/screen-inside-2.png)
-### How many time do you have left for this session ?
+### How many time left for this session ?
 ![Timers Inside](https://i.ibb.co/G53xq9n/screen-inside-3-v2.png)
 ### Get alerted if something goes wrong, take care of yourself
 ![Alert Inside](https://i.ibb.co/3BR78cR/screen-warn.png)
